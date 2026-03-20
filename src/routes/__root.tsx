@@ -11,6 +11,7 @@ import appCss from '../styles.css?url'
 import type { QueryClient } from '@tanstack/react-query'
 import { SidebarProvider } from '~/ui/sidebar'
 import { IconSideBar } from '~/components/SideBar/IconSideBar'
+import { NabBar } from '~/components/NabBar/NabBar'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -58,23 +59,26 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <TanStackQueryProvider>
           <SidebarProvider>
-          <IconSideBar />
-          {children}
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
+            <IconSideBar />
+            <div className='w-full bg-[#F9FAFB]'>
+              <NabBar />
+              {children}
+            </div>
+            <TanStackDevtools
+              config={{
+                position: 'bottom-right',
+              }}
+              plugins={[
+                {
+                  name: 'Tanstack Router',
+                  render: <TanStackRouterDevtoolsPanel />,
+                },
+                TanStackQueryDevtools,
+              ]}
+            />
           </SidebarProvider>
         </TanStackQueryProvider>
-        
+
         <Scripts />
       </body>
     </html>

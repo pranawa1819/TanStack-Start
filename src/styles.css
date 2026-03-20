@@ -136,3 +136,20 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+.notice-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notice-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notice-scroll::-webkit-scrollbar-thumb {
+  background-color: #4F39F6; /* blue */
+  border-radius: 999px;
+}
+
+.notice-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #3b28d1;
+}

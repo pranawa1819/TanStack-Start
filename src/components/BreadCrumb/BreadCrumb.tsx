@@ -3,18 +3,21 @@ import { BreadcrumbItem,  BreadcrumbList, BreadcrumbSeparator, Breadcrumb as Roo
 interface BreadCrumbsProps{
     group: string;
     title: string;
+    className: string;
+    crumbListClassName: string;
+    crumbItemClassName:string
 
 }
-export const BreadCrumb = ({group,title}:BreadCrumbsProps) => {
+export const BreadCrumb = ({group,title,className,crumbListClassName,crumbItemClassName}:BreadCrumbsProps) => {
   return (
     <div>
-      <Root>
-         <BreadcrumbList>
-         <BreadcrumbItem>
+      <Root className={className}>
+         <BreadcrumbList className={crumbListClassName}>
+         <BreadcrumbItem className={crumbItemClassName}>
              {group}
            </BreadcrumbItem>
              <BreadcrumbSeparator/>
-           <BreadcrumbItem>
+           <BreadcrumbItem className='text-black  text-[16px] leading-6 font-normal'>
              {title}
            </BreadcrumbItem>
              <BreadcrumbSeparator/>

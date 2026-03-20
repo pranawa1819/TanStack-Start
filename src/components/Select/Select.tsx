@@ -24,6 +24,7 @@ interface SelectProps {
   isRequired?: boolean
   error?: string | undefined
   Label?: string
+  disabled: boolean
 }
 
 export const HRSelect = ({
@@ -35,7 +36,8 @@ export const HRSelect = ({
   selectData,
   isRequired,
   error,
-  Label
+  Label,
+  disabled
 }: SelectProps) => {
   return (
     <div className="flex flex-col gap-1">
@@ -45,7 +47,7 @@ export const HRSelect = ({
         </label>
         {isRequired && <span className="text-red-500">*</span>}
       </div>
-      <Root value={value} onValueChange={onValueChange}>
+      <Root value={value} onValueChange={onValueChange} disabled={disabled}>
         <SelectTrigger className={triggerClassName}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

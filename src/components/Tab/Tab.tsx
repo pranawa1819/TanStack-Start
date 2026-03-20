@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { Tabs as Root, TabsContent, TabsList, TabsTrigger } from '~/ui/tabs'
 import { CheckIcon } from 'lucide-react'
 import { HRInput } from '../Input/Input'
+import { HRLabel } from '../Label/Label'
 
 interface TabDataType {
   id: number
@@ -57,9 +58,9 @@ export const Tab = ({
               const isSelected = selectedDataScope === branchItem.label
 
               return (
-                <label
+                <HRLabel
                   key={index}
-                  className={`border rounded-[6px] p-2 cursor-pointer transition-all ${
+                  labelClassName={`border rounded-[6px] p-2 cursor-pointer transition-all ${
                     isSelected
                       ? 'border-[#4F39F6] bg-[#EEF2FF]'
                       : 'border-[#E4E4E7]'
@@ -82,7 +83,7 @@ export const Tab = ({
                     className="hidden"
                     {...props}
                   />
-                </label>
+                </HRLabel>
               )
             })}
           </div>

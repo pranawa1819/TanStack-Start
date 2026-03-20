@@ -5,7 +5,7 @@ interface TabDataType {
   id: number
   content: ReactNode
   value: string
-  triggerText: string
+  triggerText: ReactNode
 }
 
 interface TabProps {

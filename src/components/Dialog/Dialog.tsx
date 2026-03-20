@@ -19,7 +19,7 @@ export const Dialog = ({
 }: DialogProps) => {
   return (
     <Root open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>{triggerContent}</DialogTrigger>
+      <DialogTrigger asChild >{triggerContent}</DialogTrigger>
       <DialogContent className={className}>{children}</DialogContent>
     </Root>
   )

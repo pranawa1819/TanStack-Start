@@ -25,6 +25,10 @@ import {
   TooltipTrigger,
 } from "~/ui/tooltip"
 import { useIsMobile } from "~/hooks/use-mobile"
+import { PiArrowCircleLeftLight } from "react-icons/pi";
+import { PiArrowCircleRightLight } from "react-icons/pi";
+
+
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -254,30 +258,32 @@ function Sidebar({
   )
 }
 
-function SidebarTrigger({
-  className,
-  onClick,
-  ...props
-}: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar()
+function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
+  const { toggleSidebar, state } = useSidebar();
+
+  const Icon = state === 'collapsed' ?  PiArrowCircleRightLight : PiArrowCircleLeftLight;
 
   return (
-    <Button
-      data-sidebar="trigger"
-      data-slot="sidebar-trigger"
-      variant="ghost"
-      size="icon"
-      className={cn("size-7", className)}
-      onClick={(event) => {
-        onClick?.(event)
-        toggleSidebar()
-      }}
-      {...props}
-    >
-      <PanelLeftIcon />
-      <span className="sr-only">Toggle Sidebar</span>
-    </Button>
-  )
+    <div className="fixed z-10">
+      <Button
+        data-sidebar="trigger"
+        data-slot="sidebar-trigger"
+        variant="ghost"
+        className={cn('bg-white rounded-full size-5 p-0.75 ', className)}
+        onClick={(event) => {
+          onClick?.(event);
+          toggleSidebar();
+        }}
+        {...props}
+      >
+        <div className="rounded-full bg-white">
+        <Icon className="text-[16px] text-black" />
+        </div>
+        <span className="sr-only">Toggle Sidebar</span>
+      </Button>
+
+    </div>
+  );
 }
 
 function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
