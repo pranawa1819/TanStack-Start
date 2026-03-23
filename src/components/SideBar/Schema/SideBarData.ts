@@ -1,57 +1,86 @@
+import { FaUsers } from 'react-icons/fa'
+import { FiFile } from 'react-icons/fi'
+import type { IconType } from 'react-icons/lib'
+import {
+  LuBuilding2,
+  LuChartNetwork,
+  LuChartPie,
+  LuFileSearch,
+  LuMapPinPlusInside,
+  LuNetwork,
+  LuUser,
+  LuUsers,
+} from 'react-icons/lu'
+
 export type MenuItem = {
   label: string
-  icon: string
+  icon: IconType
   url: string
 }
 
 export type SidebarGroupType = {
   group: string
-  icon: string
+  icon: IconType
   menu: MenuItem[]
 }
 
 export const items: SidebarGroupType[] = [
   {
     group: 'Dashboard',
-    icon: '/sidebarIcon/chart-pie.svg',
+    icon: LuChartPie,
     menu: [
       {
         label: 'Overview',
-        icon: '/sidebarIcon/chart-pie.svg',
+        icon: LuChartPie,
         url: '/dashboard/',
       },
     ],
   },
   {
     group: 'Company Setup',
-    icon: '/sidebarIcon/companyProfile.svg',
+    icon: LuBuilding2,
     menu: [
       {
         label: 'Company Profile',
-        icon: '/sidebarIcon/companyProfile.svg',
+        icon: LuBuilding2,
         url: '/companysetup/',
       },
       {
         label: 'Branch',
-        icon: '/sidebarIcon/map-pin-plus-inside.svg',
+        icon: LuMapPinPlusInside,
         url: '/companysetup/branch',
       },
       {
         label: 'Department',
-        icon: '/sidebarIcon/network.svg',
+        icon: LuNetwork,
         url: '/companysetup/departmentmanagement',
       },
     ],
   },
-    {
+  {
     group: 'Employee',
-    icon: '/sidebarIcon/users.svg',
+    icon: LuUsers,
     menu: [
       {
         label: 'Employee',
-        icon: '/sidebarIcon/users.svg',
+        icon: LuUsers,
         url: '/employee/',
       },
     ],
   },
+  {
+    group: 'Document Management',
+    icon: FiFile,
+    menu: [
+      {
+        label: 'Missing Documents',
+        icon: LuFileSearch,
+        url: 'documentManagement',
+      },
+    ],
+  },
 ]
+
+//dashboard chart-pie
+//companysetup companyProfile,branch,department
+//employee employee

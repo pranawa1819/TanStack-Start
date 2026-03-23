@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
+import type { IconType } from 'react-icons/lib'
 import {
   Sidebar as Root,
   SidebarContent,
@@ -17,7 +18,7 @@ export interface SubSideBarProps {
   group?: string
   menu: {
     label: string
-    icon: string
+    icon: IconType
     url: string
   }[]
 }
@@ -58,6 +59,7 @@ export const SubSideBar = ({ group, menu = [] }: SubSideBarProps) => {
             <SidebarMenu>
               {menu.map((item) => {
                 const isActive = activeLabel === item.label
+                const Icon = item.icon
 
                 return (
                   <SidebarMenuItem key={item.label}>
@@ -77,10 +79,7 @@ export const SubSideBar = ({ group, menu = [] }: SubSideBarProps) => {
                         }`}
                       >
                         <div className="w-5 h-5 text-white">
-                          <img
-                            src={item.icon}
-                            className="h-full w-full object-cover "
-                          />
+                          <Icon />
                         </div>
                         {item.label}
                       </SidebarMenuButton>

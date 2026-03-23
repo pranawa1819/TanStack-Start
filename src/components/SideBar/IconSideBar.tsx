@@ -13,8 +13,7 @@ import { useState } from 'react'
 import { SubSideBar } from './SubSIdeBar'
 import { Link } from '@tanstack/react-router'
 import { items, type SidebarGroupType } from './Schema/SideBarData'
-
-
+import { LuGalleryVerticalEnd } from 'react-icons/lu'
 
 export const IconSideBar = () => {
   const [activeGroup, setActiveGroup] = useState<SidebarGroupType>(items[0])
@@ -25,16 +24,14 @@ export const IconSideBar = () => {
         <div className="px-3.5 py-4.25">
           <div className="p-2.5 rounded-lg bg-[#312C85]">
             <div className="w-4 h-4">
-              <img
-                src="/sidebarIcon/sideBarLogo.svg"
-                className="h-full w-full object-cover "
-              />
+              <LuGalleryVerticalEnd className="text-white" />
             </div>
           </div>
         </div>
 
         <SidebarContent className="pt-9 pl-3 pb-0 pr-0 gap-0">
           {items.map((val) => {
+            const Icon = val.icon
             return (
               <SidebarGroup key={val.group} className="p-0">
                 <Tooltip>
@@ -62,11 +59,8 @@ export const IconSideBar = () => {
                               onClick={() => setActiveGroup(val)}
                               className="p-0 w-7 h-5 rounded-none hover:bg-transparent"
                             >
-                              <div className="w-6 h-6 text-white">
-                                <img
-                                  src={val.icon}
-                                  className="h-full w-full object-cover "
-                                />
+                              <div className="w-5 h-5 text-white">
+                                <Icon />
                               </div>
                             </SidebarMenuButton>
                           </SidebarMenuItem>

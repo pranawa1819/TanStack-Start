@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmployeeIndexRouteImport } from './routes/employee/index'
+import { Route as DocumentManagementIndexRouteImport } from './routes/documentManagement/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as CompanysetupIndexRouteImport } from './routes/companysetup/index'
 import { Route as CompanysetupDepartmentmanagementRouteImport } from './routes/companysetup/departmentmanagement'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const EmployeeIndexRoute = EmployeeIndexRouteImport.update({
   id: '/employee/',
   path: '/employee/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentManagementIndexRoute = DocumentManagementIndexRouteImport.update({
+  id: '/documentManagement/',
+  path: '/documentManagement/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/companysetup': typeof CompanysetupIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/documentManagement': typeof DocumentManagementIndexRoute
   '/employee': typeof EmployeeIndexRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/companysetup/departmentmanagement'
     | '/companysetup/'
     | '/dashboard/'
+    | '/documentManagement/'
     | '/employee/'
     | '/employee/personalinformation/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/companysetup/departmentmanagement'
     | '/companysetup'
     | '/dashboard'
+    | '/documentManagement'
     | '/employee'
     | '/employee/personalinformation/$id'
   id:
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/companysetup/departmentmanagement'
     | '/companysetup/'
     | '/dashboard/'
+    | '/documentManagement/'
     | '/employee/'
     | '/employee/personalinformation/$id'
   fileRoutesById: FileRoutesById
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   CompanysetupDepartmentmanagementRoute: typeof CompanysetupDepartmentmanagementRoute
   CompanysetupIndexRoute: typeof CompanysetupIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DocumentManagementIndexRoute: typeof DocumentManagementIndexRoute
   EmployeeIndexRoute: typeof EmployeeIndexRoute
   EmployeePersonalinformationIdRoute: typeof EmployeePersonalinformationIdRoute
 }
@@ -137,6 +150,13 @@ declare module '@tanstack/react-router' {
       path: '/employee'
       fullPath: '/employee/'
       preLoaderRoute: typeof EmployeeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentManagement/': {
+      id: '/documentManagement/'
+      path: '/documentManagement'
+      fullPath: '/documentManagement/'
+      preLoaderRoute: typeof DocumentManagementIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompanysetupDepartmentmanagementRoute: CompanysetupDepartmentmanagementRoute,
   CompanysetupIndexRoute: CompanysetupIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DocumentManagementIndexRoute: DocumentManagementIndexRoute,
   EmployeeIndexRoute: EmployeeIndexRoute,
   EmployeePersonalinformationIdRoute: EmployeePersonalinformationIdRoute,
 }
