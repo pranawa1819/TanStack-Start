@@ -39,8 +39,7 @@ export const HRTable = <TData,>({
     (_, i) => startPage + i,
   )
 
-  console.log('pageIndex', table.getState().pagination.pageIndex)
-  console.log('rows', table.getPaginationRowModel().rows.length)
+
   return (
     <>
       <div className="space-y-3">
