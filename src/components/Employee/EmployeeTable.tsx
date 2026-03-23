@@ -12,9 +12,27 @@ import { LuEye } from 'react-icons/lu'
 import { LuSettings2 } from 'react-icons/lu'
 import { FaBan } from 'react-icons/fa'
 import { useNavigate } from '@tanstack/react-router'
+import { Button } from '~/ui/button'
+import { Delete } from '../Icon/Delete'
+import { LuGitBranch } from 'react-icons/lu'
+import { AssignAccessTemplateForm } from './AssignTemplate/AssignAccessTemplateForm'
 
+type ModalSize = 'sm' | 'md' | 'lg'
 
-export const EmployeeTable = () => {
+interface GetColumnsProps {
+  onOpen: <T extends string>(config: {
+    title: T
+    modalTitle: string | null
+    okText: React.ReactNode
+    component: React.ReactNode
+    cancelText?: string | React.ReactNode
+    size?: ModalSize
+    formId?:string
+    onCancel?: () => void
+  }) => void
+}
+
+export const EmployeeTable = ({ onOpen }: GetColumnsProps) => {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 3,
@@ -151,22 +169,66 @@ export const EmployeeTable = () => {
         const row = info.row.original
         return (
           <div className="flex gap-3 items-center">
-            <div
-              className="bg-[#F4F4F5] rounded-sm p-1 w-6 h-6 cursor-pointer"
-              onClick={() =>
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-sm p-1 w-6 h-6 cursor-pointer"
+               onClick={() =>
                 navigate({
-                  to: `/employee/personalInformation/${row.employeeId}`,
+                  to: `/employee/personalinformation/${row.employeeId}`,
                 })
               }
             >
               <LuEye className="text-[16px]" />
-            </div>
-            <div className="bg-[#F4F4F5] rounded-sm p-1 w-6 h-6">
+            </Button>
+
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-sm p-1 w-6 h-6 cursor-pointer"
+              onClick={() => {
+                onOpen({
+                  modalTitle: 'Assign Access Template',
+                  title: 'Assign Access Template',
+                  okText: 'Save Changes',
+                  size: 'lg',
+                  cancelText: 'Cancel',
+                  formId:"assignTemplate",
+                  component: <AssignAccessTemplateForm/>,
+                })
+              }}
+            >
               <LuSettings2 className="text-[16px]" />
-            </div>
-            <div className="bg-[#F4F4F5] rounded-sm p-1 w-6 h-6">
+            </Button>
+
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-sm p-1 w-6 h-6 cursor-pointer"
+              onClick={() =>
+                navigate({
+                  to: `/employee/assign-approval/${row.employeeId}`,
+                })
+              }
+            >
+              <LuGitBranch className="text-[16px]" />
+            </Button>
+
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-sm p-1 w-6 h-6 cursor-pointer "
+            >
               <FaBan className="text-[16px]" />
-            </div>
+            </Button>
+
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-sm p-1 w-6 h-6 cursor-pointer bg-[#FFE2E2] "
+            >
+              <Delete fill="#E7000B" />
+            </Button>
           </div>
         )
       },

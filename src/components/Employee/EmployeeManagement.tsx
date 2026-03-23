@@ -7,9 +7,12 @@ import { Dialog } from '../Dialog/Dialog'
 import { EmployeeCard } from './EmployeeCard'
 import { EmployeeTable } from './EmployeeTable'
 import { EmployeeForm } from './EmployeeForm/EmployeeForm'
+import { useDialogFormStore } from '../Dialog/form-store'
+import { Button } from '~/ui/button'
 
 export const EmployeeManagement = () => {
   const [searchData, setSearchData] = useState('')
+  const {onOpen} = useDialogFormStore();
   const [open, setOpen] = useState(false)
   const [employee, setEmployee] = useState<'card' | 'table'>('card')
   return (
@@ -41,21 +44,25 @@ export const EmployeeManagement = () => {
             </div>
             <div className="flex items-center ">
               <button
-                onClick={() => setEmployee('card')}
-                className={`p-3 border border-[#4F39F6] cursor-pointer rounded-l-xl ${
-                  employee === 'card' ? 'bg-white' : 'bg-[#4F39F6]'
+                onClick={() => setEmployee('table')}
+                className={`p-2 border border-[#4F39F6] cursor-pointer rounded-l-xl ${
+                  employee === 'table' ? 'bg-[#4F39F6]' : ' bg-white'
                 }`}
               >
-                <List fill={`${employee === 'card' ? 'black' : 'white'}`} />
+                <List
+                  fill={`${employee === 'table' ? 'white' : 'black'}`}
+                />
               </button>
 
               <button
-                onClick={() => setEmployee('table')}
-                className={`p-3 border border-[#4F39F6] cursor-pointer rounded-r-xl  ${
-                  employee === 'table' ? 'bg-white ' : 'bg-[#4F39F6]'
+                onClick={() => setEmployee('card')}
+                className={`p-2 border border-[#4F39F6] cursor-pointer rounded-r-xl  ${
+                  employee === 'card' ? 'bg-[#4F39F6]' : ' bg-white'
                 }`}
               >
-                <Grid fill={`${employee === 'table' ? 'black' : 'white'}`} />
+                <Grid
+                  fill={`${employee === 'card' ? 'white' : 'black'}`}
+                />
               </button>
             </div>
 
@@ -63,12 +70,13 @@ export const EmployeeManagement = () => {
               open={open}
               onOpenChange={setOpen}
               triggerContent={
-                <button
+                <Button
                   type="button"
-                  className="text-center px-4 py-2.5 bg-[#4F39F6] rounded-xl text-[14px] font-medium leading-5 text-white"
+                  variant="secondary"
+                  className="text-[14px] font-medium leading-5 text-white"
                 >
                   Add Employee
-                </button>
+                </Button>
               }
               className="max-w-screen p-4 bg-[#F9FAFB] sm:max-w-186.75 "
             >
@@ -77,7 +85,7 @@ export const EmployeeManagement = () => {
           </div>
         </div>
 
-        {employee === 'card' ? <EmployeeCard /> : <EmployeeTable />}
+        {employee === 'card' ? <EmployeeCard /> : <EmployeeTable onOpen={onOpen} />}
       </div>
     </>
   )

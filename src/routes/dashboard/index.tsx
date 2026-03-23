@@ -6,12 +6,14 @@ import { Notice } from '~/components/Dashboard/Notice'
 import { PersonalInformation } from '~/components/Dashboard/PersonalInformation'
 import { QuickAction } from '~/components/Dashboard/QuickAction'
 import { TeamRequest } from '~/components/Dashboard/TeamRequest'
+import { useDialogFormStore } from '~/components/Dialog/form-store'
 
 export const Route = createFileRoute('/dashboard/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const{onOpen} = useDialogFormStore();
   return (
     <>
       <div className="w-full pb-21.5 h-[calc(100vh-84px)] overflow-auto flex flex-col bg-[#F9FAFB] ">
@@ -30,7 +32,7 @@ function RouteComponent() {
           </div>
           <div className="flex  gap-4">
             <MyAttendance />
-            <Notice/>
+            <Notice onOpen={onOpen}/>
             <Event/>
           </div>
           <div className="flex  gap-4">

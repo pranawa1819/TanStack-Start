@@ -12,6 +12,7 @@ import type { QueryClient } from '@tanstack/react-query'
 import { SidebarProvider } from '~/ui/sidebar'
 import { IconSideBar } from '~/components/SideBar/IconSideBar'
 import { NabBar } from '~/components/NabBar/NabBar'
+import { FormDialog } from '~/components/Dialog/form-dialog'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -76,6 +77,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 TanStackQueryDevtools,
               ]}
             />
+            <FormDialog />
           </SidebarProvider>
         </TanStackQueryProvider>
 

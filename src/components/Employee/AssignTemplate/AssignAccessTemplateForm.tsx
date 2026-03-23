@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
   assignAccessTemplateSchema,
+  type AssignAccessTemplateData,
   type AssignAccessTemplateFormValue,
 } from './AssignAccessTemplateForm.zod'
 import { useState } from 'react'
@@ -10,27 +11,22 @@ import { Button } from '~/ui/button'
 import { HRInput } from '~/components/Input/Input'
 import { Tab } from '~/components/Tab/Tab'
 
-type Props = {
-  setOpen: (open: boolean) => void
-}
 
-export const AssignAccessTemplateForm = ({ setOpen }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-  } = useForm<AssignAccessTemplateFormValue>({
-    resolver: zodResolver(assignAccessTemplateSchema),
-    mode: 'onChange',
-    defaultValues: {
-      assignRole: '',
-      dataScope: 'global',
-    },
-  })
 
+export const AssignAccessTemplateForm = ( ) => {
+  const { register, handleSubmit, setValue } =
+    useForm<AssignAccessTemplateFormValue>({
+      resolver: zodResolver(assignAccessTemplateSchema),
+      mode: 'onChange',
+      defaultValues: {
+        assignRole: '',
+        dataScope: 'global',
+      },
+    })
+  
   const onsubmit = (data: AssignAccessTemplateFormValue) => {
     console.log('Save Changes: ', data)
-    setOpen(false)
+
   }
 
   const role = [
@@ -85,20 +81,15 @@ export const AssignAccessTemplateForm = ({ setOpen }: Props) => {
 
   const [selectedAssignAccess, setSelectedAssignAccess] = useState('')
   const [selectedDataScope, setSelectedDataScope] = useState('')
-
   return (
     <>
-      <div className="relative w-full flex flex-col gap-4 ">
-        <div className="absolute -top-3.25 left-5 text-[16px] font-semibold leading-6">
-          Assign Access Template
-        </div>
-        <form onSubmit={handleSubmit(onsubmit)}>
-          <div className="mt-9 flex flex-col gap-4 border rounded-lg border-[#E4E4E7] p-4">
+      <div className="w-full flex flex-col gap-4 ">
+        <form onSubmit={handleSubmit(onsubmit)} id="assignTemplate">
+          <div className="flex flex-col gap-4 ">
             <div className="flex flex-col gap-4">
               <div className="text-[14px] font-medium leading-5 text-[#71717A]">
                 Step 1: Assign role template
               </div>
-
               <div className="grid grid-cols-2 gap-3">
                 {role.map((item, index) => {
                   const isSelected = selectedAssignAccess === item.role
@@ -158,22 +149,6 @@ export const AssignAccessTemplateForm = ({ setOpen }: Props) => {
               />
             </div>
 
-            <div className=" bg-white   rounded-b-xl  flex justify-end gap-4">
-              <Button
-                type="button"
-                variant='outline'
-                className="text-[14px] font-medium leading-5  text-[#A6A6A6] "
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="secondary"
-                className="flex gap-2 px-4 py-2 bg-[#4F39F6] rounded-xl text-[14px] font-medium leading-5 text-white items-center"
-              >
-                Save Changes
-              </Button>
-            </div>
           </div>
         </form>
       </div>

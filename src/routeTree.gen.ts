@@ -16,6 +16,7 @@ import { Route as CompanysetupIndexRouteImport } from './routes/companysetup/ind
 import { Route as CompanysetupDepartmentmanagementRouteImport } from './routes/companysetup/departmentmanagement'
 import { Route as CompanysetupBranchRouteImport } from './routes/companysetup/branch'
 import { Route as EmployeePersonalinformationIdRouteImport } from './routes/employee/personalinformation.$id'
+import { Route as EmployeeAssignApprovalIdRouteImport } from './routes/employee/assign-approval.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,6 +55,12 @@ const EmployeePersonalinformationIdRoute =
     path: '/employee/personalinformation/$id',
     getParentRoute: () => rootRouteImport,
   } as any)
+const EmployeeAssignApprovalIdRoute =
+  EmployeeAssignApprovalIdRouteImport.update({
+    id: '/employee/assign-approval/$id',
+    path: '/employee/assign-approval/$id',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesByTo {
@@ -71,6 +79,7 @@ export interface FileRoutesByTo {
   '/companysetup': typeof CompanysetupIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/employee': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesById {
@@ -81,6 +90,7 @@ export interface FileRoutesById {
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRouteTypes {
@@ -92,6 +102,7 @@ export interface FileRouteTypes {
     | '/companysetup/'
     | '/dashboard/'
     | '/employee/'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -101,6 +112,7 @@ export interface FileRouteTypes {
     | '/companysetup'
     | '/dashboard'
     | '/employee'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   id:
     | '__root__'
@@ -110,6 +122,7 @@ export interface FileRouteTypes {
     | '/companysetup/'
     | '/dashboard/'
     | '/employee/'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesById: FileRoutesById
 }
@@ -120,6 +133,7 @@ export interface RootRouteChildren {
   CompanysetupIndexRoute: typeof CompanysetupIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   EmployeeIndexRoute: typeof EmployeeIndexRoute
+  EmployeeAssignApprovalIdRoute: typeof EmployeeAssignApprovalIdRoute
   EmployeePersonalinformationIdRoute: typeof EmployeePersonalinformationIdRoute
 }
 
@@ -174,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeePersonalinformationIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/employee/assign-approval/$id': {
+      id: '/employee/assign-approval/$id'
+      path: '/employee/assign-approval/$id'
+      fullPath: '/employee/assign-approval/$id'
+      preLoaderRoute: typeof EmployeeAssignApprovalIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -184,6 +205,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompanysetupIndexRoute: CompanysetupIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   EmployeeIndexRoute: EmployeeIndexRoute,
+  EmployeeAssignApprovalIdRoute: EmployeeAssignApprovalIdRoute,
   EmployeePersonalinformationIdRoute: EmployeePersonalinformationIdRoute,
 }
 export const routeTree = rootRouteImport

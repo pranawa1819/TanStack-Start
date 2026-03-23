@@ -1,5 +1,6 @@
 import { EmployeeTab } from '../Tab/EmployeeTab'
 import { AttendanceInformation } from './EmployeDetails/Attendance'
+import { Education } from './EmployeDetails/Education'
 import { LeaveBalance } from './EmployeDetails/LeaveBalance'
 import { PersonalInformation } from './EmployeDetails/PersonalInformation'
 import { WorkInformation } from './EmployeDetails/WorkInformation'
@@ -34,6 +35,18 @@ export const EmployeeDetail = ({ employeeId }: { employeeId: string }) => {
       id: 5,
       value: 'Payroll',
       triggerText: 'Payroll',
+      content: '',
+    },
+    {
+      id: 6,
+      value: 'Education',
+      triggerText: 'Education',
+      content: <Education />,
+    },
+    {
+      id: 7,
+      value: 'Document',
+      triggerText: 'Document',
       content: '',
     },
   ]
