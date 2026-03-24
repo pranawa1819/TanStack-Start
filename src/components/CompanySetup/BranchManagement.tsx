@@ -2,11 +2,12 @@ import { HRInput } from '~/components/Input/Input'
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 import { BranchCard } from '~/components/CompanySetup/BranchCard'
-import { BranchTable } from '~/components/CompanySetup/BranchTable'
+import { BranchTable } from '~/components/CompanySetup/Branch/BranchTable'
 import { List } from '~/components/Icon/List'
 import { Grid } from '~/components/Icon/Grid'
 import { AddBranchForm } from '~/components/CompanySetup/AddBranchForm'
 import { Button } from '~/ui/button'
+import { BranchTableTest } from './Branch/branch-table'
 
 type ModalSize = 'sm' | 'md' | 'lg'
 
@@ -26,6 +27,9 @@ interface GetColumnsProps {
 export const BranchManagement = ({ onOpen }: GetColumnsProps) => {
   const [searchData, setSearchData] = useState('')
   const [branch, setBranch] = useState<'card' | 'table'>('card')
+  const [pagination, onPaginationChange]=useState({
+    pageIndex:0, pageSize:5
+  })
 
   //   const filterData = searchData
   //     ? data.data?.filter((item) => {
@@ -114,7 +118,7 @@ export const BranchManagement = ({ onOpen }: GetColumnsProps) => {
         </div>
       </div>
 
-      {branch === 'card' ? <BranchCard /> : <BranchTable />}
+      {branch === 'card' ? <BranchCard /> : <BranchTableTest />}
     </>
   )
 }

@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { HRCard } from '../Card/Card'
+import { HRCard } from '../../Card/Card'
 import {
   createColumnHelper,
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { Edit } from '../Icon/Edit'
-import { Delete } from '../Icon/Delete'
-import { BranchData } from './BranchData'
-import { HRTable } from '../Table/Table'
+import { Edit } from '../../Icon/Edit'
+import { Delete } from '../../Icon/Delete'
+import { BranchData } from '../BranchData'
+import { HRTable } from '../../Table/Table'
 
 export const BranchTable = () => {
   const [pagination, setPagination] = useState({
@@ -74,7 +74,7 @@ export const BranchTable = () => {
   return (
     <>
       <div className="px-6 pb-19.5 bg-[#F9FAFB]">
-         <HRCard
+        <HRCard
           cardClassName="w-full  p-6 border-none rounded-xl bg-white shadow-[0_1px_2px_0_rgba(255,0,0,0.05)]"
           cardContnetClassName="p-0"
         >
