@@ -10,8 +10,30 @@ import { LuEye } from 'react-icons/lu'
 import type { MissingDocument } from './Types/MissingDocument.type'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
+import ViewMissingDocument from './ViewMissingDocument'
 
-const MissingDocumentsTable = ({ data }: { data: MissingDocument[] }) => {
+type ModalSize = 'sm' | 'md' | 'lg'
+
+interface GetColumnsProps {
+  onOpen: <T extends string>(config: {
+    title: T
+    modalTitle: string | null
+    okText: React.ReactNode
+    component: React.ReactNode
+    cancelText?: string | React.ReactNode
+    size?: ModalSize
+    formId?: string
+    onCancel?: () => void
+  }) => void
+}
+
+const MissingDocumentsTable = ({
+  data,
+  onOpen,
+}: {
+  data: MissingDocument[]
+  onOpen: GetColumnsProps['onOpen']
+}) => {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 3,
@@ -129,11 +151,17 @@ const MissingDocumentsTable = ({ data }: { data: MissingDocument[] }) => {
           <div className="flex gap-3 items-center">
             <div
               className="bg-[#F4F4F5] rounded-sm p-1 w-6 h-6 cursor-pointer"
-              onClick={() =>
-                navigate({
-                  to: `/employee/personalInformation/${row.employeeId}`,
+              onClick={() => {
+                onOpen({
+                  modalTitle: `${row.employeeName}`,
+                  title: 'Department Management',
+                  okText: '',
+                  size: 'lg',
+                  // cancelText: 'Cancel',
+                  formId: 'department',
+                  component: <ViewMissingDocument />, //not completed
                 })
-              }
+              }}
             >
               <LuEye className="text-[16px]" />
             </div>

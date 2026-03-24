@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { LuChevronDown } from 'react-icons/lu'
 import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
+import { useDialogFormStore } from '~/components/Dialog/form-store'
 import MissingDocumentsTable from '~/components/DocumentManagement/MissingDocumentsTable'
 import { DropDown } from '~/components/DropDown/DropDown'
 import PageHeader from '~/ui/header'
@@ -59,6 +60,7 @@ const options = [
 ]
 
 function RouteComponent() {
+  const { onOpen } = useDialogFormStore()
   return (
     <div>
       <PageHeader title="Missing Documents">
@@ -165,7 +167,7 @@ function RouteComponent() {
           </DropDown>
         </div>
       </PageHeader>
-      <MissingDocumentsTable data={tableData} />
+      <MissingDocumentsTable data={tableData} onOpen={onOpen} />
     </div>
   )
 }
