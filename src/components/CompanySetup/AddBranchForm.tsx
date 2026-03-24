@@ -4,22 +4,24 @@ import { HRInput } from '../Input/Input'
 import { HRSelect } from '../Select/Select'
 import { HRCard } from '../Card/Card'
 import { addBranchSchema, type AddBranchFormValue } from './AddBranchForm.Zod'
-
+import { useDialogFormStore } from '../Dialog/form-store'
+import { Form } from '../Form/Form'
 
 export const AddBranchForm = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<AddBranchFormValue>({
+  const form = ({} = useForm<AddBranchFormValue>({
     resolver: zodResolver(addBranchSchema),
     mode: 'onChange',
-  })
+  }))
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form
+  const closeDialog = useDialogFormStore((state) => state.onClose)
 
-  console.log(errors)
   const onsubmit = (data: AddBranchFormValue) => {
     console.log('Save Changes: ', data)
+    closeDialog()
   }
 
   const depStatus = [
@@ -37,8 +39,11 @@ export const AddBranchForm = () => {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <form onSubmit={handleSubmit(onsubmit)} id="branch">
-        <HRCard cardClassName="border-none rounded-none p-0 shadow-none" cardContnetClassName='flex flex-col gap-4 p-0'>
+      <Form form={form} onSubmit={onsubmit}>
+        <HRCard
+          cardClassName="border-none rounded-none p-0 shadow-none"
+          cardContnetClassName="flex flex-col gap-4 p-0"
+        >
           <div className="flex flex-col gap-4">
             <HRInput
               Label="Branch Name"
@@ -58,7 +63,7 @@ export const AddBranchForm = () => {
               {...register('branchId')}
             />
 
-             <HRInput
+            <HRInput
               Label="Address"
               type="text"
               placeholder="Baneshwor"
@@ -67,7 +72,7 @@ export const AddBranchForm = () => {
               {...register('address')}
             />
 
-             <HRInput
+            <HRInput
               Label="Contact Number"
               type="text"
               placeholder="01-40000000"
@@ -93,9 +98,8 @@ export const AddBranchForm = () => {
               )}
             />
           </div>
-
         </HRCard>
-      </form>
+      </Form>
     </div>
   )
 }

@@ -27,9 +27,6 @@ interface GetColumnsProps {
 export const BranchManagement = ({ onOpen }: GetColumnsProps) => {
   const [searchData, setSearchData] = useState('')
   const [branch, setBranch] = useState<'card' | 'table'>('card')
-  const [pagination, onPaginationChange]=useState({
-    pageIndex:0, pageSize:5
-  })
 
   //   const filterData = searchData
   //     ? data.data?.filter((item) => {

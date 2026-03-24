@@ -2,12 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
   assignAccessTemplateSchema,
-  type AssignAccessTemplateData,
   type AssignAccessTemplateFormValue,
 } from './AssignAccessTemplateForm.zod'
 import { useState } from 'react'
 import { CheckIcon } from 'lucide-react'
-import { Button } from '~/ui/button'
 import { HRInput } from '~/components/Input/Input'
 import { Tab } from '~/components/Tab/Tab'
 
