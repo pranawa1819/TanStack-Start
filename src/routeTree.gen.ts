@@ -14,6 +14,11 @@ import { Route as EmployeeIndexRouteImport } from './routes/employee/index'
 import { Route as DocumentManagementIndexRouteImport } from './routes/documentManagement/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as CompanysetupIndexRouteImport } from './routes/companysetup/index'
+import { Route as DocumentManagementVisibilityRouteImport } from './routes/documentManagement/visibility'
+import { Route as DocumentManagementVersionHistoryRouteImport } from './routes/documentManagement/versionHistory'
+import { Route as DocumentManagementReviewAndApprovalRouteImport } from './routes/documentManagement/reviewAndApproval'
+import { Route as DocumentManagementDocumentUploadRouteImport } from './routes/documentManagement/documentUpload'
+import { Route as DocumentManagementCategoryManagementRouteImport } from './routes/documentManagement/categoryManagement'
 import { Route as CompanysetupDepartmentmanagementRouteImport } from './routes/companysetup/departmentmanagement'
 import { Route as CompanysetupBranchRouteImport } from './routes/companysetup/branch'
 import { Route as EmployeePersonalinformationIdRouteImport } from './routes/employee/personalinformation.$id'
@@ -43,6 +48,36 @@ const CompanysetupIndexRoute = CompanysetupIndexRouteImport.update({
   path: '/companysetup/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocumentManagementVisibilityRoute =
+  DocumentManagementVisibilityRouteImport.update({
+    id: '/documentManagement/visibility',
+    path: '/documentManagement/visibility',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocumentManagementVersionHistoryRoute =
+  DocumentManagementVersionHistoryRouteImport.update({
+    id: '/documentManagement/versionHistory',
+    path: '/documentManagement/versionHistory',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocumentManagementReviewAndApprovalRoute =
+  DocumentManagementReviewAndApprovalRouteImport.update({
+    id: '/documentManagement/reviewAndApproval',
+    path: '/documentManagement/reviewAndApproval',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocumentManagementDocumentUploadRoute =
+  DocumentManagementDocumentUploadRouteImport.update({
+    id: '/documentManagement/documentUpload',
+    path: '/documentManagement/documentUpload',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocumentManagementCategoryManagementRoute =
+  DocumentManagementCategoryManagementRouteImport.update({
+    id: '/documentManagement/categoryManagement',
+    path: '/documentManagement/categoryManagement',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CompanysetupDepartmentmanagementRoute =
   CompanysetupDepartmentmanagementRouteImport.update({
     id: '/companysetup/departmentmanagement',
@@ -65,6 +100,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
+  '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
+  '/documentManagement/documentUpload': typeof DocumentManagementDocumentUploadRoute
+  '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
+  '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
+  '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
@@ -75,6 +115,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
+  '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
+  '/documentManagement/documentUpload': typeof DocumentManagementDocumentUploadRoute
+  '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
+  '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
+  '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
   '/companysetup': typeof CompanysetupIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/documentManagement': typeof DocumentManagementIndexRoute
@@ -86,6 +131,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
+  '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
+  '/documentManagement/documentUpload': typeof DocumentManagementDocumentUploadRoute
+  '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
+  '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
+  '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
@@ -98,6 +148,11 @@ export interface FileRouteTypes {
     | '/'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
+    | '/documentManagement/categoryManagement'
+    | '/documentManagement/documentUpload'
+    | '/documentManagement/reviewAndApproval'
+    | '/documentManagement/versionHistory'
+    | '/documentManagement/visibility'
     | '/companysetup/'
     | '/dashboard/'
     | '/documentManagement/'
@@ -108,6 +163,11 @@ export interface FileRouteTypes {
     | '/'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
+    | '/documentManagement/categoryManagement'
+    | '/documentManagement/documentUpload'
+    | '/documentManagement/reviewAndApproval'
+    | '/documentManagement/versionHistory'
+    | '/documentManagement/visibility'
     | '/companysetup'
     | '/dashboard'
     | '/documentManagement'
@@ -118,6 +178,11 @@ export interface FileRouteTypes {
     | '/'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
+    | '/documentManagement/categoryManagement'
+    | '/documentManagement/documentUpload'
+    | '/documentManagement/reviewAndApproval'
+    | '/documentManagement/versionHistory'
+    | '/documentManagement/visibility'
     | '/companysetup/'
     | '/dashboard/'
     | '/documentManagement/'
@@ -129,6 +194,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompanysetupBranchRoute: typeof CompanysetupBranchRoute
   CompanysetupDepartmentmanagementRoute: typeof CompanysetupDepartmentmanagementRoute
+  DocumentManagementCategoryManagementRoute: typeof DocumentManagementCategoryManagementRoute
+  DocumentManagementDocumentUploadRoute: typeof DocumentManagementDocumentUploadRoute
+  DocumentManagementReviewAndApprovalRoute: typeof DocumentManagementReviewAndApprovalRoute
+  DocumentManagementVersionHistoryRoute: typeof DocumentManagementVersionHistoryRoute
+  DocumentManagementVisibilityRoute: typeof DocumentManagementVisibilityRoute
   CompanysetupIndexRoute: typeof CompanysetupIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DocumentManagementIndexRoute: typeof DocumentManagementIndexRoute
@@ -173,6 +243,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanysetupIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documentManagement/visibility': {
+      id: '/documentManagement/visibility'
+      path: '/documentManagement/visibility'
+      fullPath: '/documentManagement/visibility'
+      preLoaderRoute: typeof DocumentManagementVisibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentManagement/versionHistory': {
+      id: '/documentManagement/versionHistory'
+      path: '/documentManagement/versionHistory'
+      fullPath: '/documentManagement/versionHistory'
+      preLoaderRoute: typeof DocumentManagementVersionHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentManagement/reviewAndApproval': {
+      id: '/documentManagement/reviewAndApproval'
+      path: '/documentManagement/reviewAndApproval'
+      fullPath: '/documentManagement/reviewAndApproval'
+      preLoaderRoute: typeof DocumentManagementReviewAndApprovalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentManagement/documentUpload': {
+      id: '/documentManagement/documentUpload'
+      path: '/documentManagement/documentUpload'
+      fullPath: '/documentManagement/documentUpload'
+      preLoaderRoute: typeof DocumentManagementDocumentUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentManagement/categoryManagement': {
+      id: '/documentManagement/categoryManagement'
+      path: '/documentManagement/categoryManagement'
+      fullPath: '/documentManagement/categoryManagement'
+      preLoaderRoute: typeof DocumentManagementCategoryManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/companysetup/departmentmanagement': {
       id: '/companysetup/departmentmanagement'
       path: '/companysetup/departmentmanagement'
@@ -201,6 +306,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompanysetupBranchRoute: CompanysetupBranchRoute,
   CompanysetupDepartmentmanagementRoute: CompanysetupDepartmentmanagementRoute,
+  DocumentManagementCategoryManagementRoute:
+    DocumentManagementCategoryManagementRoute,
+  DocumentManagementDocumentUploadRoute: DocumentManagementDocumentUploadRoute,
+  DocumentManagementReviewAndApprovalRoute:
+    DocumentManagementReviewAndApprovalRoute,
+  DocumentManagementVersionHistoryRoute: DocumentManagementVersionHistoryRoute,
+  DocumentManagementVisibilityRoute: DocumentManagementVisibilityRoute,
   CompanysetupIndexRoute: CompanysetupIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DocumentManagementIndexRoute: DocumentManagementIndexRoute,

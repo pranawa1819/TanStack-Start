@@ -7,7 +7,7 @@ import {
 import { HRCard } from '../Card/Card'
 import { HRTable } from '../Table/Table'
 import { LuEye } from 'react-icons/lu'
-import type { MissingDocument } from './Schema/MissingDocument.type'
+import type { MissingDocument } from './Types/MissingDocument.type'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 
@@ -153,7 +153,7 @@ const MissingDocumentsTable = ({ data }: { data: MissingDocument[] }) => {
   })
 
   return (
-    <div className="px-6 pb-19.5 bg-[#F9FAFB] ">
+    <div className="px-6 pb-19.5 bg-[#F9FAFB]">
       <HRCard
         cardClassName="max-w-[1122px] p-6 border-none rounded-xl bg-white shadow-[0_1px_2px_0_rgba(255,0,0,0.05)]"
         cardContnetClassName="p-0"

@@ -5,7 +5,11 @@ import {
   LuBuilding2,
   LuChartNetwork,
   LuChartPie,
+  LuFileCheck2,
+  LuFiles,
   LuFileSearch,
+  LuFileText,
+  LuFileUp,
   LuMapPinPlusInside,
   LuNetwork,
   LuUser,
@@ -75,12 +79,33 @@ export const items: SidebarGroupType[] = [
       {
         label: 'Missing Documents',
         icon: LuFileSearch,
-        url: 'documentManagement',
+        url: '/documentManagement',
+      },
+      {
+        label: 'Review & Approval',
+        icon: LuFileCheck2,
+        url: '/documentManagement/reviewAndApproval',
+      },
+      {
+        label: 'Document Upload',
+        icon: LuFileUp,
+        url: '/documentManagement/documentUpload',
+      },
+      {
+        label: 'Visibility',
+        icon: FiFile,
+        url: '/documentManagement/visibility',
+      },
+      {
+        label: 'Category Management',
+        icon: LuFiles,
+        url: '/documentManagement/categoryManagement',
+      },
+      {
+        label: 'Version History',
+        icon: LuFileText,
+        url: '/documentManagement/versionHistory',
       },
     ],
   },
 ]
-
-//dashboard chart-pie
-//companysetup companyProfile,branch,department
-//employee employee

@@ -1,14 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { BsThreeDotsVertical } from 'react-icons/bs'
 import { LuChevronDown } from 'react-icons/lu'
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 import MissingDocumentsTable from '~/components/DocumentManagement/MissingDocumentsTable'
 import { DropDown } from '~/components/DropDown/DropDown'
 import PageHeader from '~/ui/header'
 import SearchBar from '~/ui/search'
-import { Table } from '~/ui/table'
 
 export const Route = createFileRoute('/documentManagement/')({
   component: RouteComponent,
+  loader: () => {
+    return {
+      crumb: 'Missing Documents',
+      title: 'Missing Documents',
+    }
+  },
 })
 
 const tableData = [
