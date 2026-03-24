@@ -49,8 +49,8 @@ export function NormalTable<TData>({
           </TableHeader>
 
           <TableBody>
-            {table.getRowModel().rows.length > 0 ? (
-              table.getRowModel().rows.map((row) => (
+            {table.getPaginationRowModel().rows.length > 0 ? (
+              table.getPaginationRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell

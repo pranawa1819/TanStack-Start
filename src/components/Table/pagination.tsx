@@ -10,17 +10,10 @@ import { type Table as TanStackTable } from '@tanstack/react-table'
 
 interface PaginationProps<TData> {
   table: TanStackTable<TData>
-  pageIndex?: number
-  showPagination?: boolean
-  pageSize?: number
 }
 
-export function HRPagination<TData>({
-  table,
-  pageIndex,
-  showPagination = true,
-}: PaginationProps<TData>) {
-  const totalPages = table.getPageCount()
+export function HRPagination<TData>({ table }: PaginationProps<TData>) {
+  const totalPages = table.getPageCount() || 1
   const currentPage = table.getState().pagination.pageIndex
   const maxVisiblePages = 5
 
@@ -36,6 +29,10 @@ export function HRPagination<TData>({
     { length: endPage - startPage },
     (_, i) => startPage + i,
   )
+  console.log(table)
+  console.log('pageCount', table.getPageCount())
+console.log('canNext', table.getCanNextPage())
+console.log('pageIndex', table.getState().pagination.pageIndex)
   console.log('pageIndex', table.getState().pagination.pageIndex)
   console.log('rows', table.getPaginationRowModel().rows.length)
   return (
@@ -44,10 +41,7 @@ export function HRPagination<TData>({
         <PaginationContent className="flex justify-end gap-4 w-full">
           <PaginationItem className="flex gap-2">
             <PaginationPrevious
-              onClick={(e) => {
-                e.preventDefault()
-                table.previousPage()
-              }}
+              onClick={() => table.previousPage()}
               aria-disabled={!table.getCanPreviousPage()}
               className={
                 !table.getCanPreviousPage()
@@ -60,16 +54,14 @@ export function HRPagination<TData>({
               <>
                 <PaginationItem>
                   <PaginationLink
-                    onClick={(e) => {
-                      e.preventDefault()
-                      table.setPageIndex(0)
-                    }}
+                    onClick={() => table.setPageIndex(0)}
                     isActive={currentPage === 0}
                     className="cursor-pointer hover:bg-muted"
                   >
                     1
                   </PaginationLink>
                 </PaginationItem>
+
                 <PaginationItem>
                   <span className="px-2 text-muted-foreground">...</span>
                 </PaginationItem>
@@ -79,16 +71,16 @@ export function HRPagination<TData>({
             {visiblePages.map((page) => (
               <PaginationItem key={page}>
                 <PaginationLink
-                  onClick={(e) => {
-                    e.preventDefault()
-                    table.setPageIndex(page)
-                  }}
+                  onClick={() => table.setPageIndex(page)}
                   isActive={currentPage === page}
-                  className={`hover:bg-muted ${
-                    currentPage === page
-                      ? 'cursor-default data-[active=true]:bg-none'
-                      : 'cursor-pointer'
-                  }`}
+                  className={`
+                            hover:bg-muted
+                            ${
+                              currentPage === page
+                                ? 'cursor-default data-[active=true]:bg-none'
+                                : 'cursor-pointer'
+                            }
+                          `}
                 >
                   {page + 1}
                 </PaginationLink>
@@ -100,12 +92,10 @@ export function HRPagination<TData>({
                 <PaginationItem>
                   <span className="px-2 text-muted-foreground">...</span>
                 </PaginationItem>
+
                 <PaginationItem>
                   <PaginationLink
-                    onClick={(e) => {
-                      e.preventDefault()
-                      table.setPageIndex(totalPages - 1)
-                    }}
+                    onClick={() => table.setPageIndex(totalPages - 1)}
                     isActive={currentPage === totalPages - 1}
                     className="cursor-pointer hover:bg-muted"
                   >
@@ -116,12 +106,7 @@ export function HRPagination<TData>({
             )}
 
             <PaginationNext
-              onClick={(e) => {
-                e.preventDefault()
-                console.log('Next pressed')
-                table.nextPage()
-                console.log(table)
-              }}
+              onClick={() => table.nextPage()}
               aria-disabled={!table.getCanNextPage()}
               className={
                 !table.getCanNextPage()
