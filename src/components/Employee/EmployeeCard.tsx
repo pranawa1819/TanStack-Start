@@ -4,6 +4,7 @@ import { DropDown } from '../DropDown/DropDown'
 import { Dialog } from '../Dialog/Dialog'
 import { employees } from './Schema/EmployeeData'
 import { LuDot } from "react-icons/lu";
+import { Button } from '~/ui/button'
 
 export const EmployeeCard = () => {
   return (
@@ -56,20 +57,20 @@ export const EmployeeCard = () => {
                     >
                       <Dialog
                         triggerContent={
-                          <button className="px-2 py-1.5 text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
+                          <Button type="button" variant="destructive" className="text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
                             Edit
-                          </button>
+                          </Button>
                         }
                       >
                         Hello
                       </Dialog>
 
-                      <button className="px-2 py-1.5 text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
+                      <Button type="button" variant="destructive" className="text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
                         Block
-                      </button>
-                      <button className="px-2 py-1.5 text-start border-t border-t-[#E4E4E7] text-red-600 cursor-pointer text-[14px] font-normal leading-5">
+                      </Button>
+                      <Button type="button" variant="destructive" className="text-start border-t border-t-[#E4E4E7] text-red-600 cursor-pointer text-[14px] font-normal leading-5">
                         Delete
-                      </button>
+                      </Button>
                     </div>
                   </DropDown>
                 </div>

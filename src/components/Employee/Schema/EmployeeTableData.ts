@@ -129,6 +129,7 @@ export type Employee = {
   dateOfBirth: string
   gender: string
   maritalStatus: string
+  actions?:string;
 
   // Address
   country: string

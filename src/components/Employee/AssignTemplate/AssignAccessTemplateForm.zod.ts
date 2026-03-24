@@ -6,3 +6,9 @@ export const assignAccessTemplateSchema = z.object({
 })
 
 export type AssignAccessTemplateFormValue = z.infer<typeof assignAccessTemplateSchema>;
+
+export interface AssignAccessTemplateData {
+    assignRole: string,
+    dataScope: string,
+
+}

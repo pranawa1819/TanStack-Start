@@ -2,27 +2,23 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { HRInput } from '../Input/Input'
 import { HRSelect } from '../Select/Select'
-import {
-  addDepartmentSchema,
-  type AddDepartmentFormValue,
-} from './AddDepartmentForm.Zod'
 import { HRCard } from '../Card/Card'
+import { addBranchSchema, type AddBranchFormValue } from './AddBranchForm.Zod'
 
 
-
-export const AddDepartmentForm = () => {
+export const AddBranchForm = () => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<AddDepartmentFormValue>({
-    resolver: zodResolver(addDepartmentSchema),
+  } = useForm<AddBranchFormValue>({
+    resolver: zodResolver(addBranchSchema),
     mode: 'onChange',
   })
 
   console.log(errors)
-  const onsubmit = (data: AddDepartmentFormValue) => {
+  const onsubmit = (data: AddBranchFormValue) => {
     console.log('Save Changes: ', data)
   }
 
@@ -40,26 +36,44 @@ export const AddDepartmentForm = () => {
   ]
 
   return (
-    <div className=" w-full flex flex-col gap-4">
-      <form onSubmit={handleSubmit(onsubmit)} id="department">
-        <HRCard cardClassName="border-none rounded-none p-0 " cardContnetClassName='flex flex-col gap-4 p-0'>
+    <div className="w-full flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onsubmit)} id="branch">
+        <HRCard cardClassName="border-none rounded-none p-0 shadow-none" cardContnetClassName='flex flex-col gap-4 p-0'>
           <div className="flex flex-col gap-4">
             <HRInput
-              Label="Department Name"
+              Label="Branch Name"
               type="text"
-              placeholder="UI/UX"
+              placeholder="Baneshwor"
               inputClassName="px-3 py-[10px] rounded-[6px] border border-[#E4E4E7]"
-              error={errors.departmentName?.message}
-              {...register('departmentName')}
+              error={errors.branchName?.message}
+              {...register('branchName')}
             />
 
             <HRInput
-              Label="Department ID"
+              Label="Branch  ID"
               type="text"
-              placeholder="2001"
+              placeholder="BAN-012"
               inputClassName="px-3 py-[10px] rounded-[6px] border border-[#E4E4E7]"
-              error={errors.departmentId?.message}
-              {...register('departmentId')}
+              error={errors.branchId?.message}
+              {...register('branchId')}
+            />
+
+             <HRInput
+              Label="Address"
+              type="text"
+              placeholder="Baneshwor"
+              inputClassName="px-3 py-[10px] rounded-[6px] border border-[#E4E4E7]"
+              error={errors.address?.message}
+              {...register('address')}
+            />
+
+             <HRInput
+              Label="Contact Number"
+              type="text"
+              placeholder="01-40000000"
+              inputClassName="px-3 py-[10px] rounded-[6px] border border-[#E4E4E7]"
+              error={errors.contact?.message}
+              {...register('contact')}
             />
 
             <Controller
@@ -70,7 +84,7 @@ export const AddDepartmentForm = () => {
                   Label="Status"
                   triggerClassName="w-full px-3 py-[10px] rounded-[6px] border border-[#E4E4E7]"
                   selectData={depStatus}
-                  placeholder="Department"
+                  placeholder="Status"
                   value={field.value}
                   onValueChange={field.onChange}
                   error={errors.status?.message}
@@ -80,7 +94,6 @@ export const AddDepartmentForm = () => {
             />
           </div>
 
-          
         </HRCard>
       </form>
     </div>

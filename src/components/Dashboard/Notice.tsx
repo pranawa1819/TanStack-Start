@@ -1,11 +1,22 @@
-import { useState } from 'react'
-import { Dialog } from '../Dialog/Dialog'
 import { noticeData } from './Schema/NoticeData'
 import { CreateAnnouncementForm } from './CreateAnnouncement/CreateAnnouncementForm'
+import { Button } from '~/ui/button'
 
-export const Notice = () => {
-  const [open, setOpen] = useState(false)
+type ModalSize = 'sm' | 'md' | 'lg'
 
+interface GetColumnsProps {
+  onOpen: <T extends string>(config: {
+    title: T
+    modalTitle: string | null
+    okText: React.ReactNode
+    component: React.ReactNode
+    cancelText?: string | React.ReactNode
+    size?: ModalSize
+    formId?: string
+    onCancel?: () => void
+  }) => void
+}
+export const Notice = ({ onOpen }: GetColumnsProps) => {
   return (
     <>
       <div className="w-full h-153 py-6 pl-6 pr-3 bg-white rounded-xl shadow-sm flex flex-col gap-4">
@@ -51,23 +62,26 @@ export const Notice = () => {
           ))}
         </div>
 
-        <Dialog
-          open={open}
-          onOpenChange={setOpen}
-          triggerContent={
-            <div className="flex justify-end">
-              <button
-                type="button"
-                className="w-30 text-center gap-2 px-4 py-2 bg-[#4F39F6] rounded-sm text-[14px] font-medium leading-5 text-white"
-              >
-                Create Now
-              </button>
-            </div>
-          }
-          className="p-4"
-        >
-          <CreateAnnouncementForm setOpen={setOpen} />
-        </Dialog>
+        <div className="flex justify-end">
+          <Button
+            type="button"
+            variant="secondary"
+            className="cursor-pointer text-[14px] font-medium leading-5 text-white"
+            onClick={() => {
+              onOpen({
+                modalTitle: 'Create Announcement',
+                title: 'Create Announcement',
+                okText: 'Add',
+                size: 'lg',
+                cancelText: 'Cancel',
+                formId: 'announcement',
+                component: <CreateAnnouncementForm />,
+              })
+            }}
+          >
+            Create Now
+          </Button>
+        </div>
       </div>
     </>
   )

@@ -22,6 +22,7 @@ import { Route as DocumentManagementCategoryManagementRouteImport } from './rout
 import { Route as CompanysetupDepartmentmanagementRouteImport } from './routes/companysetup/departmentmanagement'
 import { Route as CompanysetupBranchRouteImport } from './routes/companysetup/branch'
 import { Route as EmployeePersonalinformationIdRouteImport } from './routes/employee/personalinformation.$id'
+import { Route as EmployeeAssignApprovalIdRouteImport } from './routes/employee/assign-approval.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -95,6 +96,12 @@ const EmployeePersonalinformationIdRoute =
     path: '/employee/personalinformation/$id',
     getParentRoute: () => rootRouteImport,
   } as any)
+const EmployeeAssignApprovalIdRoute =
+  EmployeeAssignApprovalIdRouteImport.update({
+    id: '/employee/assign-approval/$id',
+    path: '/employee/assign-approval/$id',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesByTo {
@@ -124,6 +132,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardIndexRoute
   '/documentManagement': typeof DocumentManagementIndexRoute
   '/employee': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesById {
@@ -140,6 +149,7 @@ export interface FileRoutesById {
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRouteTypes {
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/documentManagement/'
     | '/employee/'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/documentManagement'
     | '/employee'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   id:
     | '__root__'
@@ -187,6 +199,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/documentManagement/'
     | '/employee/'
+    | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesById: FileRoutesById
 }
@@ -203,6 +216,7 @@ export interface RootRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
   DocumentManagementIndexRoute: typeof DocumentManagementIndexRoute
   EmployeeIndexRoute: typeof EmployeeIndexRoute
+  EmployeeAssignApprovalIdRoute: typeof EmployeeAssignApprovalIdRoute
   EmployeePersonalinformationIdRoute: typeof EmployeePersonalinformationIdRoute
 }
 
@@ -299,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeePersonalinformationIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/employee/assign-approval/$id': {
+      id: '/employee/assign-approval/$id'
+      path: '/employee/assign-approval/$id'
+      fullPath: '/employee/assign-approval/$id'
+      preLoaderRoute: typeof EmployeeAssignApprovalIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -317,6 +338,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
   DocumentManagementIndexRoute: DocumentManagementIndexRoute,
   EmployeeIndexRoute: EmployeeIndexRoute,
+  EmployeeAssignApprovalIdRoute: EmployeeAssignApprovalIdRoute,
   EmployeePersonalinformationIdRoute: EmployeePersonalinformationIdRoute,
 }
 export const routeTree = rootRouteImport

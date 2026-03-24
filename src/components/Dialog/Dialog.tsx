@@ -17,6 +17,7 @@ export const Dialog = ({
   open,
   onOpenChange,
 }: DialogProps) => {
+  console.log(open);
   return (
     <Root open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild >{triggerContent}</DialogTrigger>

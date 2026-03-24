@@ -19,8 +19,8 @@ export const PersonalInformation = () => {
             </div>
             <div className="flex flex-col gap-1">
               <div className="flex flex-col gap-2">
-                <span>{items.name}</span>
-                <span>{items.position}</span>
+                <span className='text-[20px] font-semibold leading-7 text-[#09090B]'>{items.name}</span>
+                <span className='text-[12px] font-medium leading-4 text-[#71717A]'>{items.position}</span>
               </div>
               <div
                 className={`w-13.25 text-center px-2 py-1  rounded-[400px] text-[12px] leading-4 font-semibold ${items.status == 'Active' ? 'bg-[#DCFCE7] text-green-600' : 'bg-red-100 text-red-600'}`}
