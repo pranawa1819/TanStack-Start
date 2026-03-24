@@ -15,9 +15,12 @@ import {
   natureOfOrganizationOptions,
   provinceOptions,
 } from '~/components/CompanySetup/FormData'
-import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 import { HRCard } from '~/components/Card/Card'
 import { Button } from '~/ui/button'
+
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
+import CrumbTitle from '~/components/BreadCrumb/Crumb'
+import { Edit2 } from 'lucide-react'
 
 export type BreadcrumbSearch = {
   group?: string
@@ -35,6 +38,17 @@ export const Route = createFileRoute('/companysetup/')({
     icon: search.icon,
     groupIcon: search.groupIcon,
   }),
+  // loader: () => {
+  //   return {
+  //     crumb: (
+  //       <CrumbTitle
+  //         title="Configuration Management"
+  //         id="configurationManagement.crumb.configuration"
+  //         icon={Edit2}
+  //       />
+  //     ),
+  //   }
+  // },
   component: BasicInformation,
 })
 
@@ -61,6 +75,7 @@ function BasicInformation() {
   }
 
   const search = Route.useSearch()
+  // const {crumb} = Route.useLoaderData()
   return (
     <>
       <div className="w-full h-[calc(100vh-84px)] overflow-auto flex flex-col bg-[#F9FAFB]">
@@ -71,6 +86,10 @@ function BasicInformation() {
           title={search.label ?? ''}
           group={search.group ?? ''}
         />
+          {/* {crumb}
+          </BreadCrumb> */}
+         
+
         <div className="px-12 py-6 text-[20px] font-semibold leading-12 text-[#09090B] ">
           Company Profile
         </div>
@@ -280,7 +299,7 @@ function BasicInformation() {
               </Button>
               <Button
                 type="submit"
-                variant='secondary'
+                variant="secondary"
                 className="flex gap-2  text-[14px] font-medium leading-5 text-white items-center"
               >
                 <FaRegSave />
