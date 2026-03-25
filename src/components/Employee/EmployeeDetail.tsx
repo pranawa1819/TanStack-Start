@@ -1,6 +1,7 @@
 import { useDialogFormStore } from '../Dialog/form-store'
 import { EmployeeTab } from '../Tab/EmployeeTab'
 import { AttendanceInformation } from './EmployeDetails/Attendance'
+import { Document } from './EmployeDetails/Document'
 import { Education } from './EmployeDetails/Education'
 import { LeaveBalance } from './EmployeDetails/LeaveBalance'
 import { PersonalInformation } from './EmployeDetails/PersonalInformation'
@@ -49,7 +50,7 @@ export const EmployeeDetail = ({ employeeId }: { employeeId: string }) => {
       id: 7,
       value: 'Document',
       triggerText: 'Document',
-      content: '',
+      content: <Document onOpen={onOpen}/>,
     },
   ]
   return (

@@ -1,17 +1,17 @@
 import { DatePicker } from "~/components/DatePicker/DatePicker"
-import { AttendanceTable } from "./Attendance/AttendanceTable"
 import { HRCard } from "~/components/Card/Card"
 import { cardData } from "./Attendance/AttendanceCardData"
+import { AttendanceTableTest } from "./Attendance/Attendance-table"
 
 export const AttendanceInformation = () => {
   return (
     <>
-      <div className="flex flex-col gap-6 max-h-115 overflow-auto pr-3">
+      <div className="max-h-115 flex flex-col gap-6  overflow-auto pr-3">
         <div className="flex justify-between items-center">
         <div className="text-[18px] font-medium leading-7 text-[#09090B]">
           Attendance
         </div>
-        <DatePicker />
+        <DatePicker placeholder="Jan 20, 2023 - Feb 09, 2023" className="px-4 py-2.5 border-[#E4E4E7]"/>
         </div>
         <div className="grid grid-cols-5 gap-4">
             {cardData.map((items)=>
@@ -25,7 +25,7 @@ export const AttendanceInformation = () => {
 
         </div>
 
-        <AttendanceTable />
+        <AttendanceTableTest />
       </div>
     </>
   )
