@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react'
 import { HRInput } from '~/components/Input/Input'
 
 interface HRFileUploadProps {
-  className:string,
-  buttonClassName: string,
+  className: string
+  buttonClassName: string
   icon?: React.ReactNode
   label?: string
   subLable: string
@@ -54,7 +54,7 @@ export const FileUpload = ({
 
   return (
     <div
-    className={className}
+      className={className}
       onDragOver={(e) => drag && e.preventDefault()}
       onDrop={drag ? handleDrop : undefined}
     >
@@ -70,7 +70,7 @@ export const FileUpload = ({
 
           <div className="text-[12px] leading-5 font-normal">{label}</div>
 
-          <div className="text-[#71717A] text-[14px] font-normal">
+          <div className="text-[#71717A] text-[12px] font-normal">
             {subLable}
           </div>
 
