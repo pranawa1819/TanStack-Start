@@ -3,7 +3,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { DropDown } from '../DropDown/DropDown'
 import { Dialog } from '../Dialog/Dialog'
 import { employees } from './Schema/EmployeeData'
-import { LuDot } from "react-icons/lu";
+import { LuDot } from 'react-icons/lu'
 import { Button } from '~/ui/button'
 
 export const EmployeeCard = () => {
@@ -37,7 +37,14 @@ export const EmployeeCard = () => {
                       <span className="text-[#71717A] ">
                         {items.designation}
                       </span>
-                      <span className={`flex items-center text-[#71717A] ${items.status==="Online"?'text-green-600':''}`}><LuDot className={`w-6 h-6 ${items.status==="Online"?'text-green-600':'text-[#09090B]'}`}/>{items.status}</span>
+                      <span
+                        className={`flex items-center text-[#71717A] ${items.status === 'Online' ? 'text-green-600' : ''}`}
+                      >
+                        <LuDot
+                          className={`w-6 h-6 ${items.status === 'Online' ? 'text-green-600' : 'text-[#09090B]'}`}
+                        />
+                        {items.status}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -52,23 +59,29 @@ export const EmployeeCard = () => {
                     className="pt-1 pb-0 px-0"
                   >
                     <div
-                      className=" flex flex-col  transition-colors"
+                      className="w-full flex flex-col   transition-colors"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Dialog
-                        triggerContent={
-                          <Button type="button" variant="destructive" className="text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
-                            Edit
-                          </Button>
-                        }
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        className=" text-[#18181B] cursor-pointer text-[14px] font-normal leading-5"
                       >
-                        Hello
-                      </Dialog>
+                        Edit
+                      </Button>
 
-                      <Button type="button" variant="destructive" className="text-start text-[#18181B] cursor-pointer text-[14px] font-normal leading-5">
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        className=" text-[#18181B] cursor-pointer text-[14px] font-normal leading-5"
+                      >
                         Block
                       </Button>
-                      <Button type="button" variant="destructive" className="text-start border-t border-t-[#E4E4E7] text-red-600 cursor-pointer text-[14px] font-normal leading-5">
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        className=" rounded-none border-t border-t-[#E4E4E7] text-red-600 cursor-pointer text-[14px] font-normal leading-5"
+                      >
                         Delete
                       </Button>
                     </div>

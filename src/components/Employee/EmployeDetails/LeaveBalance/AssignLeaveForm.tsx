@@ -1,29 +1,27 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Button } from '~/ui/button'
 import { HRInput } from '~/components/Input/Input'
 import { assignLeaveSchema, type AssignLeaveFormValue } from './AssignLeaveZod'
 import { HRLabel } from '~/components/Label/Label'
 import { LuInfo } from 'react-icons/lu'
+import { Form } from '~/components/Form/Form'
+import { useDialogFormStore } from '~/components/Dialog/form-store'
 
-type Props = {
-  setOpen: (open: boolean) => void
-}
-
-export const AssignLeaveForm = ({ setOpen }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AssignLeaveFormValue>({
+export const AssignLeaveForm = () => {
+  const form = useForm<AssignLeaveFormValue>({
     resolver: zodResolver(assignLeaveSchema),
     mode: 'onChange',
   })
 
-  console.log(errors)
+  const {
+    register,
+    formState: { errors },
+  } = form
+
+  const closeDialog = useDialogFormStore((state) => state.onClose)
   const onsubmit = (data: AssignLeaveFormValue) => {
     console.log('Save Changes: ', data)
-    setOpen(false)
+    closeDialog()
   }
 
   const leave = [
@@ -54,23 +52,22 @@ export const AssignLeaveForm = ({ setOpen }: Props) => {
   ]
 
   return (
-    <div className="relative w-full flex flex-col gap-4">
-      <div className="absolute -top-2.5 left-5 text-[16px] font-semibold leading-6">
-        Assign Leave Type
-      </div>
-      <div className="mt-9 p-3 bg-[#F4F4F5] rounded-xl flex gap-2 ">
-        <div className='w-12 h-12'>
-            <img src="/Image.png" alt="profile" className='w-full h-full object-cover rounded-full'/>
+    <div className="w-full flex flex-col gap-4">
+      <div className="p-3 bg-[#F4F4F5] rounded-xl flex gap-2 ">
+        <div className="w-12 h-12">
+          <img
+            src="/Image.png"
+            alt="profile"
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
-        <div className='flex flex-col gap-1'>
-            <span>John Doe</span>
-            <span>EID 012 . Technical</span>
-
+        <div className="flex flex-col gap-1">
+          <span>John Doe</span>
+          <span>EID 012 . Technical</span>
         </div>
-
       </div>
 
-      <form onSubmit={handleSubmit(onsubmit)}>
+      <Form form={form} onSubmit={onsubmit}>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3">
             <HRLabel labelClassName="text-[14px] font-medium leading-5 text-[#18181B]">
@@ -104,34 +101,18 @@ export const AssignLeaveForm = ({ setOpen }: Props) => {
               ))}
             </div>
           </div>
-          <div className='flex gap-2 items-center px-3 py-2.5 bg-[#EFF6FF] border border-[#E4E4E7] rounded-[6px]'>
-            <div className='p-1'><LuInfo className="text-[24px] text-[#A1A1AA]" /></div>
+          <div className="flex gap-2 items-center px-3 py-2.5 bg-[#EFF6FF] border border-[#E4E4E7] rounded-[6px]">
+            <div className="p-1">
+              <LuInfo className="text-[24px] text-[#A1A1AA]" />
+            </div>
             <span>
               Entitlement days for these categories are fixed by company policy
               and will be credited to the employee's balance immediately upon
               assignment.
             </span>
           </div>
-          <div className="bg-white rounded-b-xl flex justify-end gap-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-              className=" text-[14px] font-medium leading-4 text-[#A6A6A6] "
-            >
-              Cancel
-            </Button>
-
-            <Button
-              type="submit"
-              variant="secondary"
-              className="text-[14px] leading-5 font-medium text-white "
-            >
-              Assign to Employee
-            </Button>
-          </div>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

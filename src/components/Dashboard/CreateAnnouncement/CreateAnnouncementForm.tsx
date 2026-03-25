@@ -1,34 +1,36 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
-
-
 import { useState } from 'react'
 import { FileUpload } from './FileUpload'
 import { UploadIcon } from 'lucide-react'
 import { HRInput } from '~/components/Input/Input'
 import { HRSelect } from '~/components/Select/Select'
 import { HRTextArea } from '~/components/TextArea/TextArea'
-import { createAnnouncementSchema, type CreateAnnouncementFormValue } from './CreateAnnouncementForm.Zod'
-
-
+import {
+  createAnnouncementSchema,
+  type CreateAnnouncementFormValue,
+} from './CreateAnnouncementForm.Zod'
+import { useDialogFormStore } from '~/components/Dialog/form-store'
+import { Form } from '~/components/Form/Form'
 
 export const CreateAnnouncementForm = () => {
+  const form = ({} = useForm<CreateAnnouncementFormValue>({
+    resolver: zodResolver(createAnnouncementSchema),
+    mode: 'onChange',
+  }))
   const {
     register,
-    handleSubmit,
     control,
     setValue,
     formState: { errors },
-  } = useForm<CreateAnnouncementFormValue>({
-    resolver: zodResolver(createAnnouncementSchema),
-    mode: 'onChange',
-  })
+  } = form
 
   const [text, setText] = useState('')
+  const closeDialog = useDialogFormStore((state) => state.onClose)
 
-  console.log(errors)
   const onsubmit = (data: CreateAnnouncementFormValue) => {
     console.log('Save Changes: ', data)
+    closeDialog()
   }
 
   const branchOptions = [
@@ -58,7 +60,7 @@ export const CreateAnnouncementForm = () => {
 
   return (
     <div className="relative w-full flex flex-col gap-4">
-      <form onSubmit={handleSubmit(onsubmit)} id="announcement">
+      <Form form={form} onSubmit={onsubmit}>
         <div className="flex flex-col gap-4 ">
           <div className="flex flex-col gap-4">
             <HRInput
@@ -135,10 +137,8 @@ export const CreateAnnouncementForm = () => {
               />
             )}
           />
-
-
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

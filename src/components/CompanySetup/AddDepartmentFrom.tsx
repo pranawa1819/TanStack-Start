@@ -7,23 +7,26 @@ import {
   type AddDepartmentFormValue,
 } from './AddDepartmentForm.Zod'
 import { HRCard } from '../Card/Card'
-
-
+import { useDialogFormStore } from '../Dialog/form-store'
+import { Form } from '../Form/Form'
 
 export const AddDepartmentForm = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<AddDepartmentFormValue>({
+  const form = ({} = useForm<AddDepartmentFormValue>({
     resolver: zodResolver(addDepartmentSchema),
     mode: 'onChange',
-  })
+  }))
 
-  console.log(errors)
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form
+
+  const closeDialog = useDialogFormStore((state) => state.onClose)
+
   const onsubmit = (data: AddDepartmentFormValue) => {
     console.log('Save Changes: ', data)
+    closeDialog()
   }
 
   const depStatus = [
@@ -41,8 +44,11 @@ export const AddDepartmentForm = () => {
 
   return (
     <div className=" w-full flex flex-col gap-4">
-      <form onSubmit={handleSubmit(onsubmit)} id="department">
-        <HRCard cardClassName="border-none rounded-none p-0 " cardContnetClassName='flex flex-col gap-4 p-0'>
+      <Form form={form} onSubmit={onsubmit}>
+        <HRCard
+          cardClassName="border-none rounded-none p-0 "
+          cardContnetClassName="flex flex-col gap-4 p-0"
+        >
           <div className="flex flex-col gap-4">
             <HRInput
               Label="Department Name"
@@ -79,10 +85,8 @@ export const AddDepartmentForm = () => {
               )}
             />
           </div>
-
-          
         </HRCard>
-      </form>
+      </Form>
     </div>
   )
 }

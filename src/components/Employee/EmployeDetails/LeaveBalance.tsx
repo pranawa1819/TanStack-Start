@@ -3,12 +3,25 @@ import { Button } from '~/ui/button'
 import { LuPlus } from 'react-icons/lu'
 import { leaveBalanceData } from './LeaveBalance/LeaveBalanceData'
 import { LuHistory } from 'react-icons/lu'
-import { Dialog } from '~/components/Dialog/Dialog'
-import { useState } from 'react'
 import { AssignLeaveForm } from './LeaveBalance/AssignLeaveForm'
 
-export const LeaveBalance = () => {
-  const [open, setOpen] = useState(false)
+type ModalSize = 'sm' | 'md' | 'lg'
+
+interface GetColumnsProps {
+  onOpen: <T extends string>(config: {
+    className:string
+    title: T
+    modalTitle: string | null
+    okText: React.ReactNode
+    component: React.ReactNode
+    cancelText?: string | React.ReactNode
+    size?: ModalSize
+    formId?: string
+    onCancel?: () => void
+  }) => void
+}
+
+export const LeaveBalance = ({ onOpen }: GetColumnsProps) => {
   return (
     <>
       <div className="flex flex-col gap-6 max-h-115 overflow-auto pr-3">
@@ -16,23 +29,28 @@ export const LeaveBalance = () => {
           <div className="text-[18px] font-medium leading-7 text-[#09090B]">
             Leave Balance
           </div>
-          <Dialog
-            open={open}
-            onOpenChange={setOpen}
-            triggerContent={
-              <Button
-                type="button"
-                variant="secondary"
-                className="flex gap-2 items-center text-[14px] font-medium leading-5"
-              >
-                <LuPlus className="text-[16px] " />
-                Assign Leave
-              </Button>
-            }
-            className='p-4 sm:max-w-185'
+
+          <Button
+            type="button"
+            variant="secondary"
+            className="flex gap-2 items-center text-[14px] font-medium leading-5"
+            onClick={() => {
+              onOpen({
+                className:"sm:max-w-185",
+                modalTitle: 'Assign Leave Type',
+                title: 'Assign Leave Type',
+                okText: 'Assign to Employee',
+                size: 'lg',
+                cancelText: 'Cancel',
+                formId: 'assignLeave',
+                component: <AssignLeaveForm />,
+              })
+              
+            }}
           >
-            <AssignLeaveForm setOpen={setOpen} />
-          </Dialog>
+            <LuPlus className="text-[16px] " />
+            Assign Leave
+          </Button>
         </div>
         <div className="grid grid-cols-3 gap-4">
           {leaveBalanceData.map((items) => {

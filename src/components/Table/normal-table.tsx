@@ -25,8 +25,8 @@ export function NormalTable<TData>({
   const columns = table.getAllColumns()
 
   return (
-    <div className={cn('space-y-3', className)}>
-      <div className="w-full overflow-x-auto">
+    <div className={cn('space-y-3')}>
+      <div className={`w-full overflow-x-auto ${className} `}>
         <Table className="min-w-full rounded-xl border border-[#E4E4E7] mb-4">
           <TableHeader className="bg-[#FAFAFA] text-[#71717A]">
             {table.getHeaderGroups().map((headerGroup) => (
