@@ -16,7 +16,7 @@ export const PersonalInformation = ({ employeeId }: { employeeId: string }) => {
     <>
       <div className="flex flex-col gap-6 max-h-115 overflow-auto pr-3">
         <div className="text-[18px] font-medium leading-7 text-[#09090B]">
-          Personal Information
+          Persona Information
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">

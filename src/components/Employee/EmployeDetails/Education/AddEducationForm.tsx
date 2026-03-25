@@ -1,30 +1,27 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
-import { Button } from '~/ui/button'
 import { HRInput } from '~/components/Input/Input'
 import { educationSchema, type EducationFormValue } from './AddEducationZod'
 import { HRSelect } from '~/components/Select/Select'
 import { HRCard } from '~/components/Card/Card'
+import { Form } from '~/components/Form/Form'
+import { useDialogFormStore } from '~/components/Dialog/form-store'
 
-type Props = {
-  setOpen: (open: boolean) => void
-}
-
-export const AddEducationForm = ({ setOpen }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<EducationFormValue>({
+export const AddEducationForm = () => {
+  const form = ({} = useForm<EducationFormValue>({
     resolver: zodResolver(educationSchema),
     mode: 'onChange',
-  })
-
-  console.log(errors)
+  }))
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form
+  
+  const closeDialog = useDialogFormStore((state) => state.onClose)
   const onsubmit = (data: EducationFormValue) => {
     console.log('Save Changes: ', data)
-    setOpen(false)
+    closeDialog()
   }
 
   const statusData = [
@@ -48,12 +45,10 @@ export const AddEducationForm = ({ setOpen }: Props) => {
 
   return (
     <div className="relative w-full flex flex-col gap-4">
-      <div className="absolute -top-2.5 left-0 text-[16px] font-semibold leading-6">
-        Education Details
-      </div>
-      <form onSubmit={handleSubmit(onsubmit)}>
+      <Form form={form} onSubmit={onsubmit}>
+
         <HRCard
-          cardClassName="mt-9  border rounded-lg border-[#E4E4E7] p-4 "
+          cardClassName="shadow-none rounded-none border-none p-0 "
           cardContnetClassName="flex flex-col gap-4 p-0"
         >
           <HRInput
@@ -126,27 +121,8 @@ export const AddEducationForm = ({ setOpen }: Props) => {
               />
             )}
           />
-
-          <div className="bg-white rounded-b-xl flex justify-end gap-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-              className=" text-[14px] font-medium leading-4 text-[#A6A6A6] "
-            >
-              Cancel
-            </Button>
-
-            <Button
-              type="submit"
-              variant="secondary"
-              className="text-[14px] leading-5 font-medium text-white "
-            >
-              Add
-            </Button>
-          </div>
         </HRCard>
-      </form>
+      </Form>
     </div>
   )
 }

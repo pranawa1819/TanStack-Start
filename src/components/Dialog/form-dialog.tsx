@@ -67,6 +67,9 @@ export const FormDialog = () => {
     component,
     formId,
   } = useDialogFormStore()
+  const formState = useDialogFormStore((state) => state.formState)
+
+  const submitting = formState?.isSubmitting
 
   return (
     <div>
@@ -85,10 +88,7 @@ export const FormDialog = () => {
             <DialogClose className="absolute -top-10 left-4 "></DialogClose>
           </DialogHeader>
           <HRCard
-            cardClassName={cn(
-              formContainerStyles({ size }),
-              'mt-4 ',
-            )}
+            cardClassName={cn(formContainerStyles({ size }), 'mt-4 ')}
             cardContnetClassName="flex flex-col gap-4 p-0"
           >
             {component}
@@ -108,6 +108,7 @@ export const FormDialog = () => {
                 variant="secondary"
                 form={formId}
                 className=" text-[14px] font-medium leading-5 text-white"
+                
               >
                 {okText}
               </Button>

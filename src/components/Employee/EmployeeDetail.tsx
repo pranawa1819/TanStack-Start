@@ -1,3 +1,4 @@
+import { useDialogFormStore } from '../Dialog/form-store'
 import { EmployeeTab } from '../Tab/EmployeeTab'
 import { AttendanceInformation } from './EmployeDetails/Attendance'
 import { Education } from './EmployeDetails/Education'
@@ -6,6 +7,7 @@ import { PersonalInformation } from './EmployeDetails/PersonalInformation'
 import { WorkInformation } from './EmployeDetails/WorkInformation'
 
 export const EmployeeDetail = ({ employeeId }: { employeeId: string }) => {
+  const {onOpen} = useDialogFormStore();
   const tabsData = [
     {
       id: 1,
@@ -29,7 +31,7 @@ export const EmployeeDetail = ({ employeeId }: { employeeId: string }) => {
       id: 4,
       value: 'Leave Balance',
       triggerText: 'Leave Balance',
-      content: <LeaveBalance />
+      content: <LeaveBalance onOpen={onOpen}/>
     },
     {
       id: 5,
@@ -41,7 +43,7 @@ export const EmployeeDetail = ({ employeeId }: { employeeId: string }) => {
       id: 6,
       value: 'Education',
       triggerText: 'Education',
-      content: <Education />,
+      content: <Education onOpen={onOpen}/>,
     },
     {
       id: 7,
