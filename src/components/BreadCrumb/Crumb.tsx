@@ -1,9 +1,8 @@
-import type { LucideIcon } from 'lucide-react';
-
+import type { IconType } from 'react-icons';
 interface CrumbTitleProps {
   title?: string;
   id?: string;
-  icon?: LucideIcon;
+  icon?: IconType ;
   iconClassName?: string;
 }
 

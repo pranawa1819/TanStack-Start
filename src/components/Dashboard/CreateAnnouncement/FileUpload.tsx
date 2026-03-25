@@ -5,6 +5,7 @@ interface HRFileUploadProps {
   className:string,
   buttonClassName: string,
   icon?: React.ReactNode
+  iconClassName?:string,
   label?: string
   subLable: string
   browseText?: string
@@ -15,6 +16,7 @@ interface HRFileUploadProps {
 export const FileUpload = ({
   icon,
   className,
+  iconClassName,
   buttonClassName,
   label,
   browseText,
@@ -66,7 +68,7 @@ export const FileUpload = ({
         />
       ) : (
         <>
-          {icon && <div className="mb-2">{icon}</div>}
+          {icon && <div className={`mb-2 ${iconClassName}`}>{icon}</div>}
 
           <div className="text-[12px] leading-5 font-normal">{label}</div>
 
