@@ -5,12 +5,10 @@ import { cn } from '~/lib/utils'
 
 function Switch({
   className,
-  color = '',
   size = 'default',
   ...props
 }: React.ComponentProps<typeof SwitchPrimitive.Root> & {
   size?: 'sm' | 'md' | 'default'
-  color?: string
 }) {
   return (
     <SwitchPrimitive.Root
@@ -21,7 +19,7 @@ function Switch({
         `data-[size=default]:h-5 data-[size=default]:w-12.5`,
         `data-[size=md]:h-[1.15rem] data-[size=md]:w-8`,
         `data-[size=sm]:h-3.5 data-[size=sm]:w-6 `,
-        `data-[state=checked]:bg-[${color}] data-[state=unchecked]:bg-input dark:data-[state=unchecked]:bg-input/80`,
+        `data-[state=checked]:bg-[#4F39F6] data-[state=unchecked]:bg-input dark:data-[state=unchecked]:bg-input/80`,
         className,
       )}
       {...props}

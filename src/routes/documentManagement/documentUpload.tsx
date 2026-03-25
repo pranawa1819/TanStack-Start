@@ -140,7 +140,6 @@ function RouteComponent() {
           render={({ field }) => (
             <div className="flex gap-3 items-center">
               <Switch
-                color="#4F39F6"
                 checked={field.value || false}
                 onCheckedChange={field.onChange}
               />
