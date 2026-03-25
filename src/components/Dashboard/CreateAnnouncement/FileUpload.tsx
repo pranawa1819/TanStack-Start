@@ -1,20 +1,29 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, type ReactNode } from 'react'
+import type { IconType } from 'react-icons/lib'
 import { HRInput } from '~/components/Input/Input'
 
 interface HRFileUploadProps {
-  className:string,
-  buttonClassName: string,
-  icon?: React.ReactNode
+  className: string
+  iconClassName?: string
+  buttonClassName: string
+  cardClassName?:string
+  titleClassName?:string
+  icon?: IconType
   label?: string
   subLable: string
-  browseText?: string
+  browseText?: ReactNode
   drag?: boolean
+  iconClass?:string
   onChange?: (file: File) => void
 }
 
 export const FileUpload = ({
   icon,
   className,
+  iconClassName,
+  iconClass,
+  cardClassName,
+  titleClassName,
   buttonClassName,
   label,
   browseText,
@@ -23,6 +32,7 @@ export const FileUpload = ({
   onChange,
   ...props
 }: HRFileUploadProps) => {
+  const Icon = icon;
   const inputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
 
@@ -54,7 +64,7 @@ export const FileUpload = ({
 
   return (
     <div
-    className={className}
+      className={className}
       onDragOver={(e) => drag && e.preventDefault()}
       onDrop={drag ? handleDrop : undefined}
     >
@@ -66,14 +76,17 @@ export const FileUpload = ({
         />
       ) : (
         <>
-          {icon && <div className="mb-2">{icon}</div>}
-
-          <div className="text-[12px] leading-5 font-normal">{label}</div>
-
-          <div className="text-[#71717A] text-[14px] font-normal">
-            {subLable}
+            <div className='flex-1'>
+          <div className={cardClassName}>
+            {Icon && <div className={`${iconClassName}`}><Icon size={16} className={iconClass}/></div>}
+            <div className={titleClassName}>
+            <div className="text-[12px] leading-5 font-normal">{label}</div>
+            <div className="text-[#71717A] text-[14px] font-normal">
+              {subLable}
+            </div>
+            </div>
+            </div>
           </div>
-
           <button
             type="button"
             className={buttonClassName}

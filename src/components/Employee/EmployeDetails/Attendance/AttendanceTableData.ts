@@ -40,7 +40,7 @@ export const attendanceRecord = [
     late: 0,
     earlyLeave: 0,
     otIn: '',
-    otOut: '',
+    otOut: '09:30 PM',
     overtime: '0h 0m',
     event: 'Leave',
     remarks: 'Sick leave',
@@ -77,7 +77,7 @@ export const attendanceRecord = [
   },
 ]
 
-export type Attendance = {
+export interface Attendance  {
   date: string
   day: string
   status: boolean

@@ -15,14 +15,16 @@ interface DatePickerProps {
   defaultMonth?: Date
   numberOfMonths?: number
   placeholder?: string
+  className:string
 }
 
 export function DatePicker({
   value,
   onChange,
   defaultMonth,
+  className,
   numberOfMonths = 2,
-  placeholder = "Pick a date",
+  placeholder,
 }: DatePickerProps) {
   const [internalDate, setInternalDate] = React.useState<DateRange | undefined>(
     value || undefined
@@ -38,7 +40,7 @@ export function DatePicker({
   return (
     <Field className="w-60">
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild className={className}>
           <Button
             variant="outline"
             className="px-2.5 font-normal"
