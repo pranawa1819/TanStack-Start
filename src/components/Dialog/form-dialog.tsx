@@ -66,6 +66,7 @@ export const FormDialog = () => {
     cancelText,
     component,
     formId,
+    dialogClassName,
   } = useDialogFormStore()
   const formState = useDialogFormStore((state) => state.formState)
 
@@ -74,7 +75,7 @@ export const FormDialog = () => {
   return (
     <div>
       <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className={cn(dialogContentStyles({ size }), `p-4`)}>
+        <DialogContent className={cn(dialogContentStyles({ size }), `p-4 ${dialogClassName}`)}>
           <DialogHeader
             className={cn(dialogHeaderStyles({ size }), `px-0 py-0`)}
           >

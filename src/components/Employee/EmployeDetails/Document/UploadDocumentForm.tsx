@@ -5,14 +5,11 @@ import { useDialogFormStore } from '~/components/Dialog/form-store'
 import { HRTextArea } from '~/components/TextArea/TextArea'
 import { HRSelect } from '~/components/Select/Select'
 import { Form } from '~/components/Form/Form'
-import {
-  documentCategoryOptions,
-  documetTempelate,
-} from './AssignDocumentData'
+import { documentCategoryOptions, documetTempelate } from './AssignDocumentData'
 import { HRDatePicker } from '~/components/DatePicker/Date'
-import { uploadDocumentSchema, type UploadDocumentFormValue } from './UploadDOcumentForm.Zod'
 import { FileUpload } from '~/components/Dashboard/CreateAnnouncement/FileUpload'
-import { LuCloudUpload } from "react-icons/lu";
+import { LuCloudUpload } from 'react-icons/lu'
+import { uploadDocumentSchema, type UploadDocumentFormValue } from './UploadDocumentForm.Zod'
 
 export const UploadDocumentForm = () => {
   const form = ({} = useForm<UploadDocumentFormValue>({
@@ -85,28 +82,28 @@ export const UploadDocumentForm = () => {
                   />
                 )}
               />
-             <Controller
-            name="image"
-            control={control}
-            render={({ field }) => (
-              <FileUpload
-                className="border border-dashed bg-[#F4F4F5] rounded-[2px] py-6 text-center cursor-pointer flex flex-col justify-center items-center gap-2"
-                cardClassName='flex flex-col gap-2 items-center'
-                iconClassName='w-12 h-12 p-1 flex justify-center items-center rounded-[400px] bg-[#C6D2FF]'
-                icon={LuCloudUpload}
-                iconClass='text-indigo-600'
-                label="Drag and drop to upload a file"
-                subLable="Supported formats: PDF, DOC, DOCX, JPG, PNG (Max 10MB)"
-                buttonClassName="w-30 px-4 py-2 bg-[#4F39F6] rounded-xl text-[14px] font-medium text-white"
-                browseText="Browse Files"
-                drag
-                onChange={(file) => field.onChange(file)}
+              <Controller
+                name="image"
+                control={control}
+                render={({ field }) => (
+                  <FileUpload
+                    className="border border-[#E4E4E7] bg-[#F4F4F5] rounded-[2px] py-6 text-center cursor-pointer flex flex-col justify-center items-center gap-2"
+                    cardClassName="flex flex-col gap-2 items-center"
+                    iconClassName="w-12 h-12 p-1 flex justify-center items-center rounded-[400px] bg-[#C6D2FF]"
+                    icon={LuCloudUpload}
+                    iconClass="text-indigo-600"
+                    label="Drag and drop to upload a file"
+                    subLable="Supported formats: PDF, DOC, DOCX, JPG, PNG (Max 10MB)"
+                    buttonClassName="w-30 px-4 py-2 bg-[#4F39F6] rounded-xl text-[14px] font-medium text-white"
+                    browseText="Browse Files"
+                    drag
+                    onChange={(file) => field.onChange(file)}
+                  />
+                )}
               />
-            )}
-          />
               <HRDatePicker
                 Label="Due Date"
-                placeholder='YYYY-MM-DD'
+                placeholder="YYYY-MM-DD"
                 className=" py-5 rounded-[6px] border border-[#E4E4E7] bg-white"
                 error={errors.date?.message as string}
                 {...register('date')}

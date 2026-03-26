@@ -17,6 +17,7 @@ interface GetColumnsProps {
     cancelText?: string | React.ReactNode
     size?: ModalSize
     formId?: string
+    dialogClassName?:string
     onCancel?: () => void
   }) => void
 }
@@ -43,9 +44,9 @@ export const LeaveBalance = ({ onOpen }: GetColumnsProps) => {
                 size: 'lg',
                 cancelText: 'Cancel',
                 formId: 'assignLeave',
+                dialogClassName: "sm:max-w-[738px] max-h-[120vh]",
                 component: <AssignLeaveForm />,
               })
-              
             }}
           >
             <LuPlus className="text-[16px] " />

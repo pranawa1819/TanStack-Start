@@ -18,12 +18,13 @@ import {
 import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 import { HRCard } from '~/components/Card/Card'
 import { Button } from '~/ui/button'
+import type { IconType } from 'react-icons/lib'
 
 export type BreadcrumbSearch = {
   group?: string
   label?: string
   url?: string
-  icon?: any
+  icon?: IconType
   groupIcon?: any
 }
 

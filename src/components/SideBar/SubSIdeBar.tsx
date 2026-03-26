@@ -60,7 +60,6 @@ export const SubSideBar = ({ group, menu = [] }: SubSideBarProps) => {
               {menu.map((item) => {
                 const isActive = activeLabel === item.label
                 const Icon = item.icon
-
                 return (
                   <SidebarMenuItem key={item.label}>
                     <Link
@@ -78,9 +77,7 @@ export const SubSideBar = ({ group, menu = [] }: SubSideBarProps) => {
                           isActive ? 'bg-[#ECECEC1A] text-white' : ''
                         }`}
                       >
-                        <div className="w-5 h-5 text-white">
-                          <Icon />
-                        </div>
+                        <Icon className='text-[20px] text-white'/>
                         {item.label}
                       </SidebarMenuButton>
                     </Link>

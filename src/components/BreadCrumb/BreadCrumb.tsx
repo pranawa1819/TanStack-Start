@@ -1,3 +1,4 @@
+import type { IconType } from "react-icons/lib";
 import { BreadcrumbItem,  BreadcrumbList, BreadcrumbSeparator, Breadcrumb as Root} from "~/ui/breadcrumb"
 
 interface BreadCrumbsProps{
@@ -6,9 +7,11 @@ interface BreadCrumbsProps{
     className: string;
     crumbListClassName: string;
     crumbItemClassName:string
+    icon?:IconType
 
 }
-export const BreadCrumb = ({group,title,className,crumbListClassName,crumbItemClassName}:BreadCrumbsProps) => {
+export const BreadCrumb = ({icon,group,title,className,crumbListClassName,crumbItemClassName}:BreadCrumbsProps) => {
+  const Icon = icon
   return (
     <div>
       <Root className={className}>

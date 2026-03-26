@@ -12,6 +12,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from '~/ui/input-group'
+import { HRLabel } from '../Label/Label'
 
 interface HRDatePickerProps {
   date?: Date
@@ -59,7 +60,7 @@ export const HRDatePicker = ({
     <Field className={`flex flex-col gap-1`}>
       {Label && (
         <div className="flex gap-1">
-          <FieldLabel>{Label}</FieldLabel>
+          <HRLabel labelClassName="text-[14px] text-[#09090B] font-medium leading-5">{Label}</HRLabel>
           {isRequired && <span className="text-red-500">*</span>}
         </div>
       )}

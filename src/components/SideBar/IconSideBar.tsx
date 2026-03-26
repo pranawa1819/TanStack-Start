@@ -59,9 +59,7 @@ export const IconSideBar = () => {
                               onClick={() => setActiveGroup(val)}
                               className="p-0 w-7 h-5 rounded-none hover:bg-transparent"
                             >
-                              <div className="w-5 h-5 text-white">
-                                <Icon />
-                              </div>
+                              <Icon className='text-[20px] text-white'/>
                             </SidebarMenuButton>
                           </SidebarMenuItem>
                         </SidebarMenu>

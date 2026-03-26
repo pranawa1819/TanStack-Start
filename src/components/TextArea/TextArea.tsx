@@ -1,5 +1,6 @@
 import { Textarea as Root } from '~/ui/textarea'
 import React from 'react'
+import { HRLabel } from '../Label/Label'
 
 interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -22,9 +23,9 @@ export const HRTextArea = ({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex gap-1">
-        <label className="text-[14px] text-[#09090B] font-medium leading-5">
+        <HRLabel labelClassName="text-[14px] text-[#09090B] font-medium leading-5">
           {Label}
-        </label>
+        </HRLabel>
         {isRequired && <span className="text-red-500">*</span>}
       </div>
 

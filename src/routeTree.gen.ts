@@ -10,10 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LeaveIndexRouteImport } from './routes/leave/index'
 import { Route as EmployeeIndexRouteImport } from './routes/employee/index'
 import { Route as DocumentManagementIndexRouteImport } from './routes/documentManagement/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as CompanysetupIndexRouteImport } from './routes/companysetup/index'
+import { Route as AttendanceIndexRouteImport } from './routes/attendance/index'
+import { Route as LeaveMyRequestRouteImport } from './routes/leave/my-request'
+import { Route as LeaveLeaveBalanceRouteImport } from './routes/leave/leave-balance'
 import { Route as DocumentManagementVisibilityRouteImport } from './routes/documentManagement/visibility'
 import { Route as DocumentManagementVersionHistoryRouteImport } from './routes/documentManagement/versionHistory'
 import { Route as DocumentManagementReviewAndApprovalRouteImport } from './routes/documentManagement/reviewAndApproval'
@@ -21,12 +25,19 @@ import { Route as DocumentManagementDocumentUploadRouteImport } from './routes/d
 import { Route as DocumentManagementCategoryManagementRouteImport } from './routes/documentManagement/categoryManagement'
 import { Route as CompanysetupDepartmentmanagementRouteImport } from './routes/companysetup/departmentmanagement'
 import { Route as CompanysetupBranchRouteImport } from './routes/companysetup/branch'
+import { Route as AttendanceWorkRecordRouteImport } from './routes/attendance/work-record'
+import { Route as AttendanceMyAttendanceRouteImport } from './routes/attendance/my-attendance'
 import { Route as EmployeePersonalinformationIdRouteImport } from './routes/employee/personalinformation.$id'
 import { Route as EmployeeAssignApprovalIdRouteImport } from './routes/employee/assign-approval.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaveIndexRoute = LeaveIndexRouteImport.update({
+  id: '/leave/',
+  path: '/leave/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmployeeIndexRoute = EmployeeIndexRouteImport.update({
@@ -47,6 +58,21 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
 const CompanysetupIndexRoute = CompanysetupIndexRouteImport.update({
   id: '/companysetup/',
   path: '/companysetup/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttendanceIndexRoute = AttendanceIndexRouteImport.update({
+  id: '/attendance/',
+  path: '/attendance/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaveMyRequestRoute = LeaveMyRequestRouteImport.update({
+  id: '/leave/my-request',
+  path: '/leave/my-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaveLeaveBalanceRoute = LeaveLeaveBalanceRouteImport.update({
+  id: '/leave/leave-balance',
+  path: '/leave/leave-balance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentManagementVisibilityRoute =
@@ -90,6 +116,16 @@ const CompanysetupBranchRoute = CompanysetupBranchRouteImport.update({
   path: '/companysetup/branch',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AttendanceWorkRecordRoute = AttendanceWorkRecordRouteImport.update({
+  id: '/attendance/work-record',
+  path: '/attendance/work-record',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AttendanceMyAttendanceRoute = AttendanceMyAttendanceRouteImport.update({
+  id: '/attendance/my-attendance',
+  path: '/attendance/my-attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmployeePersonalinformationIdRoute =
   EmployeePersonalinformationIdRouteImport.update({
     id: '/employee/personalinformation/$id',
@@ -105,6 +141,8 @@ const EmployeeAssignApprovalIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/attendance/my-attendance': typeof AttendanceMyAttendanceRoute
+  '/attendance/work-record': typeof AttendanceWorkRecordRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
@@ -112,15 +150,21 @@ export interface FileRoutesByFullPath {
   '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
   '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
   '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
+  '/leave/leave-balance': typeof LeaveLeaveBalanceRoute
+  '/leave/my-request': typeof LeaveMyRequestRoute
+  '/attendance/': typeof AttendanceIndexRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/leave/': typeof LeaveIndexRoute
   '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/attendance/my-attendance': typeof AttendanceMyAttendanceRoute
+  '/attendance/work-record': typeof AttendanceWorkRecordRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
@@ -128,16 +172,22 @@ export interface FileRoutesByTo {
   '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
   '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
   '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
+  '/leave/leave-balance': typeof LeaveLeaveBalanceRoute
+  '/leave/my-request': typeof LeaveMyRequestRoute
+  '/attendance': typeof AttendanceIndexRoute
   '/companysetup': typeof CompanysetupIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/documentManagement': typeof DocumentManagementIndexRoute
   '/employee': typeof EmployeeIndexRoute
+  '/leave': typeof LeaveIndexRoute
   '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/attendance/my-attendance': typeof AttendanceMyAttendanceRoute
+  '/attendance/work-record': typeof AttendanceWorkRecordRoute
   '/companysetup/branch': typeof CompanysetupBranchRoute
   '/companysetup/departmentmanagement': typeof CompanysetupDepartmentmanagementRoute
   '/documentManagement/categoryManagement': typeof DocumentManagementCategoryManagementRoute
@@ -145,10 +195,14 @@ export interface FileRoutesById {
   '/documentManagement/reviewAndApproval': typeof DocumentManagementReviewAndApprovalRoute
   '/documentManagement/versionHistory': typeof DocumentManagementVersionHistoryRoute
   '/documentManagement/visibility': typeof DocumentManagementVisibilityRoute
+  '/leave/leave-balance': typeof LeaveLeaveBalanceRoute
+  '/leave/my-request': typeof LeaveMyRequestRoute
+  '/attendance/': typeof AttendanceIndexRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
+  '/leave/': typeof LeaveIndexRoute
   '/employee/assign-approval/$id': typeof EmployeeAssignApprovalIdRoute
   '/employee/personalinformation/$id': typeof EmployeePersonalinformationIdRoute
 }
@@ -156,6 +210,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/attendance/my-attendance'
+    | '/attendance/work-record'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
     | '/documentManagement/categoryManagement'
@@ -163,15 +219,21 @@ export interface FileRouteTypes {
     | '/documentManagement/reviewAndApproval'
     | '/documentManagement/versionHistory'
     | '/documentManagement/visibility'
+    | '/leave/leave-balance'
+    | '/leave/my-request'
+    | '/attendance/'
     | '/companysetup/'
     | '/dashboard/'
     | '/documentManagement/'
     | '/employee/'
+    | '/leave/'
     | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/attendance/my-attendance'
+    | '/attendance/work-record'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
     | '/documentManagement/categoryManagement'
@@ -179,15 +241,21 @@ export interface FileRouteTypes {
     | '/documentManagement/reviewAndApproval'
     | '/documentManagement/versionHistory'
     | '/documentManagement/visibility'
+    | '/leave/leave-balance'
+    | '/leave/my-request'
+    | '/attendance'
     | '/companysetup'
     | '/dashboard'
     | '/documentManagement'
     | '/employee'
+    | '/leave'
     | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   id:
     | '__root__'
     | '/'
+    | '/attendance/my-attendance'
+    | '/attendance/work-record'
     | '/companysetup/branch'
     | '/companysetup/departmentmanagement'
     | '/documentManagement/categoryManagement'
@@ -195,16 +263,22 @@ export interface FileRouteTypes {
     | '/documentManagement/reviewAndApproval'
     | '/documentManagement/versionHistory'
     | '/documentManagement/visibility'
+    | '/leave/leave-balance'
+    | '/leave/my-request'
+    | '/attendance/'
     | '/companysetup/'
     | '/dashboard/'
     | '/documentManagement/'
     | '/employee/'
+    | '/leave/'
     | '/employee/assign-approval/$id'
     | '/employee/personalinformation/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AttendanceMyAttendanceRoute: typeof AttendanceMyAttendanceRoute
+  AttendanceWorkRecordRoute: typeof AttendanceWorkRecordRoute
   CompanysetupBranchRoute: typeof CompanysetupBranchRoute
   CompanysetupDepartmentmanagementRoute: typeof CompanysetupDepartmentmanagementRoute
   DocumentManagementCategoryManagementRoute: typeof DocumentManagementCategoryManagementRoute
@@ -212,10 +286,14 @@ export interface RootRouteChildren {
   DocumentManagementReviewAndApprovalRoute: typeof DocumentManagementReviewAndApprovalRoute
   DocumentManagementVersionHistoryRoute: typeof DocumentManagementVersionHistoryRoute
   DocumentManagementVisibilityRoute: typeof DocumentManagementVisibilityRoute
+  LeaveLeaveBalanceRoute: typeof LeaveLeaveBalanceRoute
+  LeaveMyRequestRoute: typeof LeaveMyRequestRoute
+  AttendanceIndexRoute: typeof AttendanceIndexRoute
   CompanysetupIndexRoute: typeof CompanysetupIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DocumentManagementIndexRoute: typeof DocumentManagementIndexRoute
   EmployeeIndexRoute: typeof EmployeeIndexRoute
+  LeaveIndexRoute: typeof LeaveIndexRoute
   EmployeeAssignApprovalIdRoute: typeof EmployeeAssignApprovalIdRoute
   EmployeePersonalinformationIdRoute: typeof EmployeePersonalinformationIdRoute
 }
@@ -227,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leave/': {
+      id: '/leave/'
+      path: '/leave'
+      fullPath: '/leave/'
+      preLoaderRoute: typeof LeaveIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/employee/': {
@@ -255,6 +340,27 @@ declare module '@tanstack/react-router' {
       path: '/companysetup'
       fullPath: '/companysetup/'
       preLoaderRoute: typeof CompanysetupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attendance/': {
+      id: '/attendance/'
+      path: '/attendance'
+      fullPath: '/attendance/'
+      preLoaderRoute: typeof AttendanceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leave/my-request': {
+      id: '/leave/my-request'
+      path: '/leave/my-request'
+      fullPath: '/leave/my-request'
+      preLoaderRoute: typeof LeaveMyRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leave/leave-balance': {
+      id: '/leave/leave-balance'
+      path: '/leave/leave-balance'
+      fullPath: '/leave/leave-balance'
+      preLoaderRoute: typeof LeaveLeaveBalanceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentManagement/visibility': {
@@ -306,6 +412,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanysetupBranchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/attendance/work-record': {
+      id: '/attendance/work-record'
+      path: '/attendance/work-record'
+      fullPath: '/attendance/work-record'
+      preLoaderRoute: typeof AttendanceWorkRecordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/attendance/my-attendance': {
+      id: '/attendance/my-attendance'
+      path: '/attendance/my-attendance'
+      fullPath: '/attendance/my-attendance'
+      preLoaderRoute: typeof AttendanceMyAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/employee/personalinformation/$id': {
       id: '/employee/personalinformation/$id'
       path: '/employee/personalinformation/$id'
@@ -325,6 +445,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AttendanceMyAttendanceRoute: AttendanceMyAttendanceRoute,
+  AttendanceWorkRecordRoute: AttendanceWorkRecordRoute,
   CompanysetupBranchRoute: CompanysetupBranchRoute,
   CompanysetupDepartmentmanagementRoute: CompanysetupDepartmentmanagementRoute,
   DocumentManagementCategoryManagementRoute:
@@ -334,10 +456,14 @@ const rootRouteChildren: RootRouteChildren = {
     DocumentManagementReviewAndApprovalRoute,
   DocumentManagementVersionHistoryRoute: DocumentManagementVersionHistoryRoute,
   DocumentManagementVisibilityRoute: DocumentManagementVisibilityRoute,
+  LeaveLeaveBalanceRoute: LeaveLeaveBalanceRoute,
+  LeaveMyRequestRoute: LeaveMyRequestRoute,
+  AttendanceIndexRoute: AttendanceIndexRoute,
   CompanysetupIndexRoute: CompanysetupIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DocumentManagementIndexRoute: DocumentManagementIndexRoute,
   EmployeeIndexRoute: EmployeeIndexRoute,
+  LeaveIndexRoute: LeaveIndexRoute,
   EmployeeAssignApprovalIdRoute: EmployeeAssignApprovalIdRoute,
   EmployeePersonalinformationIdRoute: EmployeePersonalinformationIdRoute,
 }
