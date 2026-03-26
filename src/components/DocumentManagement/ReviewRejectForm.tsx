@@ -8,6 +8,7 @@ import { HRInput } from '../Input/Input'
 import { HRTextArea } from '../TextArea/TextArea'
 import { useState } from 'react'
 import { useDialogFormStore } from '../Dialog/form-store'
+import InitialsCard from './InitialsCard'
 
 const ReviewRejectReasonFormSchema = z.object({
   documentName: z.string().min(1, 'Document Name is required'),
@@ -20,14 +21,6 @@ const ReviewRejectReasonFormSchema = z.object({
 type ReviewRejectReasonFormProps = z.infer<typeof ReviewRejectReasonFormSchema>
 
 const ReviewRejectForm = ({ data }: { data: CardProps }) => {
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map((word) => word[0])
-      .join('')
-      .toUpperCase()
-  }
-  const initials = getInitials(data.employeeName)
   const form = ({} = useForm<ReviewRejectReasonFormProps>({
     resolver: zodResolver(ReviewRejectReasonFormSchema),
     mode: 'onChange',
@@ -61,9 +54,7 @@ const ReviewRejectForm = ({ data }: { data: CardProps }) => {
       <div className="flex flex-col gap-3">
         Send Rejection Reason To:
         <div className="flex p-3 gap-2 rounded-xl bg-[#F4F4F5]">
-          <div className="p-4 rounded-full bg-[#4F39F6] text-[12px] font-semibold text-[#FFF] w-12 h-12 items-center justify-center flex">
-            {initials}
-          </div>
+          <InitialsCard name={data.employeeName} />
           <div className="text-[16px] font-semibold">
             {data.employeeName}
             <div className="text-[12px] flex items-center font-medium text-[#71717A]">
