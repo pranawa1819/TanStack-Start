@@ -10,7 +10,14 @@ import {
 import { type Table as TanStackTable } from '@tanstack/react-table'
 import { cn } from '~/lib/utils'
 import { HRPagination } from './pagination'
+import '@tanstack/react-table'
 
+declare module '@tanstack/react-table' {
+  interface ColumnMeta<TData, TValue> {
+    className?: string
+    headerClassName?: string
+  }
+}
 interface DataTableProps<TData> {
   table: TanStackTable<TData>
   className?: string
@@ -55,7 +62,9 @@ export function NormalTable<TData>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="text-[14px] p-4 border-b align-middle whitespace-nowrap"
+                      className={`p-4
+                        text-[14px] font-medium leading-5 border-b align-middle whitespace-nowrap
+                        ${cell.column.columnDef.meta?.className}`}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

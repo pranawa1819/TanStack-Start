@@ -10,6 +10,7 @@ import { Button } from '~/ui/button'
 import { EmployeeTableTest } from './EmployeeTable/Employe-table'
 import { LuChevronDown } from 'react-icons/lu'
 import { DropDown } from '../DropDown/DropDown'
+import { ActionDropdown } from '../DropDown/ActionDropDown'
 
 export const EmployeeManagement = () => {
   const [searchData, setSearchData] = useState('')
@@ -39,44 +40,29 @@ export const EmployeeManagement = () => {
                 color="black"
               />
             </div>
-              <DropDown
-                trigger={
-                  <div className="flex gap-2 items-center border rounded-[6px] px-4 py-2 border-[#E4E4E7] bg-white leading-4 text-[14px font-normal">
-                    <span>Branch</span>
-                    <LuChevronDown className="text-[20px]" />
-                  </div>
-                }
-                align="end"
-                className="pt-1 pb-0 px-0"
-              >
-                <div
-                  className="w-full flex flex-col   transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    className=" text-[#18181B] cursor-pointer text-[14px] font-normal leading-5"
-                  >
-                    Edit
-                  </Button>
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    className=" text-[#18181B] cursor-pointer text-[14px] font-normal leading-5"
-                  >
-                    Block
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    className=" rounded-none border-t border-t-[#E4E4E7] text-red-600 cursor-pointer text-[14px] font-normal leading-5"
-                  >
-                    Delete
-                  </Button>
+            <ActionDropdown
+              trigger={
+                <div className="flex gap-2 items-center border rounded-[6px] px-4 py-2 border-[#E4E4E7] bg-white text-[14px] font-normal">
+                  <span>Branch</span>
+                  <LuChevronDown className="text-[20px]" />
                 </div>
-              </DropDown>
+              }
+              actions={[
+                {
+                  label: 'Edit',
+                  onClick: () => console.log('Edit clicked'),
+                },
+                {
+                  label: 'Block',
+                  onClick: () => console.log('Block clicked'),
+                },
+                {
+                  label: 'Delete',
+                  onClick: () => console.log('Delete clicked'),
+                  className: 'text-red-600 rounded-none',
+                },
+              ]}
+            />
 
             <div className="flex items-center ">
               <button

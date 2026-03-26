@@ -21,6 +21,7 @@ export interface DialogState {
   size?: ModalSize;
   onCancel?: () => void;
   formState?: FormState<FieldValues>;
+  dialogClassName?:string;
 }
 
 export interface DialogActions {
@@ -32,6 +33,7 @@ export interface DialogActions {
     component: ReactNode;
     cancelText?: string | ReactNode;
     size?: ModalSize;
+    dialogClassName?: string;
     onCancel?: () => void;
   }) => void;
   onClose: () => void;
@@ -46,6 +48,7 @@ export const useDialogFormStore = create<DialogState & DialogActions>((set, get)
   modalTitle: null,
   component: <></>,
   cancelText: null,
+  dialogClassName: '', 
   onCancel: () => {},
   setFormState: (state) => {
     set(() => ({ formState: state }));
@@ -61,9 +64,10 @@ export const useDialogFormStore = create<DialogState & DialogActions>((set, get)
     component: ReactNode;
     cancelText?: ReactNode;
     size?: ModalSize;
+    dialogClassName?: string;
     onCancel?: () => void;
   }) => {
-    const { title, okText, component, cancelText, size, onCancel, modalTitle, modalSubTitle } =
+    const { title, okText, component, cancelText, size, onCancel, modalTitle, modalSubTitle,dialogClassName } =
       config;
     const formId: InferFormId<T> | string = title
       ? ((title.toLowerCase().replace(/\s+/g, '-') + '-form') as InferFormId<T>)
@@ -78,6 +82,7 @@ export const useDialogFormStore = create<DialogState & DialogActions>((set, get)
       okText: okText,
       cancelText: cancelText,
       size: size,
+      dialogClassName: dialogClassName,
       onCancel: onCancel,
     }));
   },
