@@ -1,33 +1,35 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { addDays, format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { type DateRange } from "react-day-picker"
-import { Button } from "~/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "~/ui/popover"
-import { Field} from "~/ui/field"
-import { Calendar } from "~/ui/calendar"
+import * as React from 'react'
+import { format } from 'date-fns'
+import { type DateRange } from 'react-day-picker'
+import { Button } from '~/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '~/ui/popover'
+import { Field } from '~/ui/field'
+import { Calendar } from '~/ui/calendar'
+import { LuCalendarDays } from 'react-icons/lu'
 
 interface DatePickerProps {
+  className?: string
+  placeHolderClassName?: string
   value?: DateRange
   onChange?: (date: DateRange | undefined) => void
   defaultMonth?: Date
   numberOfMonths?: number
   placeholder?: string
-  className:string
 }
 
 export function DatePicker({
+  className,
+  placeHolderClassName,
   value,
   onChange,
   defaultMonth,
-  className,
   numberOfMonths = 2,
-  placeholder,
+  placeholder = 'Pick a date',
 }: DatePickerProps) {
   const [internalDate, setInternalDate] = React.useState<DateRange | undefined>(
-    value || undefined
+    value || undefined,
   )
 
   const selectedDate = value ?? internalDate
@@ -43,20 +45,20 @@ export function DatePicker({
         <PopoverTrigger asChild className={className}>
           <Button
             variant="outline"
-            className="px-2.5 font-normal"
+            className={`px-2.5 font-normal border border-[#E4E4E7] bg-[#FFF] rounded-[6px] `}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <LuCalendarDays className="h-4 w-4 text-[#71717A]" />
             {selectedDate?.from ? (
               selectedDate.to ? (
                 <>
-                  {format(selectedDate.from, "LLL dd, y")} -{" "}
-                  {format(selectedDate.to, "LLL dd, y")}
+                  {format(selectedDate.from, 'LLL dd, y')} -{' '}
+                  {format(selectedDate.to, 'LLL dd, y')}
                 </>
               ) : (
-                format(selectedDate.from, "LLL dd, y")
+                format(selectedDate.from, 'LLL dd, y')
               )
             ) : (
-              <span>{placeholder}</span>
+              <span className={placeHolderClassName}>{placeholder}</span>
             )}
           </Button>
         </PopoverTrigger>

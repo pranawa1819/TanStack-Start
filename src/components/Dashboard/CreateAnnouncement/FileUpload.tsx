@@ -4,16 +4,13 @@ import { HRInput } from '~/components/Input/Input'
 
 interface HRFileUploadProps {
   className: string
-  iconClassName?: string
   buttonClassName: string
-  cardClassName?:string
-  titleClassName?:string
-  icon?: IconType
+  icon?: React.ReactNode
   label?: string
   subLable: string
   browseText?: ReactNode
   drag?: boolean
-  iconClass?:string
+  iconClass?: string
   onChange?: (file: File) => void
 }
 
@@ -32,7 +29,7 @@ export const FileUpload = ({
   onChange,
   ...props
 }: HRFileUploadProps) => {
-  const Icon = icon;
+  const Icon = icon
   const inputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
 
@@ -76,16 +73,12 @@ export const FileUpload = ({
         />
       ) : (
         <>
-            <div className='flex-1'>
-          <div className={cardClassName}>
-            {Icon && <div className={`${iconClassName}`}><Icon size={16} className={iconClass}/></div>}
-            <div className={titleClassName}>
-            <div className="text-[12px] leading-5 font-normal">{label}</div>
-            <div className="text-[#71717A] text-[14px] font-normal">
-              {subLable}
-            </div>
-            </div>
-            </div>
+          {icon && <div className="mb-2">{icon}</div>}
+
+          <div className="text-[12px] leading-5 font-normal">{label}</div>
+
+          <div className="text-[#71717A] text-[14px] font-normal">
+            {subLable}
           </div>
           <button
             type="button"

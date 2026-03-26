@@ -1,10 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 import type { BreadcrumbSearch } from '.'
-import { BranchManagement } from '~/components/CompanySetup/BranchManagement'
 import { useDialogFormStore } from '~/components/Dialog/form-store'
 import { DepartmentManagement } from '~/components/CompanySetup/DepartmentManagement'
-
 
 export const Route = createFileRoute('/companysetup/departmentmanagement')({
   validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
@@ -19,8 +17,8 @@ export const Route = createFileRoute('/companysetup/departmentmanagement')({
 
 function RouteComponent() {
   const search = Route.useSearch()
-  const {onOpen} = useDialogFormStore();
- 
+  const { onOpen } = useDialogFormStore()
+
   return (
     <>
       <div className="w-full h-[calc(100vh-84px)] overflow-auto flex flex-col bg-[#F9FAFB]">
@@ -31,7 +29,7 @@ function RouteComponent() {
           title={search.label ?? ''}
           group={search.group ?? ''}
         />
-        <DepartmentManagement onOpen={onOpen}/>
+        <DepartmentManagement onOpen={onOpen} />
       </div>
     </>
   )
