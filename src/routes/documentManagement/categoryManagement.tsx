@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useDialogFormStore } from '~/components/Dialog/form-store'
+import AddEditCategoryForm from '~/components/DocumentManagement/AddEditCategoryForm'
 import CategoryManagementCard from '~/components/DocumentManagement/CategoryManagementCard'
 import CategoryManagementTable from '~/components/DocumentManagement/CategoryManagementTable'
 import { TabsFlex } from '~/components/Tab/TabFlex'
-// import Toggle from '~/components/Toggle/Toggle'
 import { Button } from '~/ui/button'
 import PageHeader from '~/ui/header'
 import { Tabs, TabsContent } from '~/ui/tabs'
@@ -56,7 +56,17 @@ function RouteComponent() {
             <TabsFlex />
             <Button
               variant="default"
-              className="bg-[#4F39F6] text-[#FFF] rounded-xl"
+              className="bg-[#4F39F6] text-[#FFF] rounded-xl cursor-pointer"
+              onClick={() => {
+                onOpen({
+                  modalTitle: 'Category Management',
+                  title: 'Department Management',
+                  okText: 'Add',
+                  size: 'lg',
+                  cancelText: 'Cancel',
+                  component: <AddEditCategoryForm />,
+                })
+              }}
             >
               Add Category
             </Button>

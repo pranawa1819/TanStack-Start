@@ -11,7 +11,7 @@ const EditCategoryFormSchema = z.object({
 
 type EditCategoryFormProps = z.infer<typeof EditCategoryFormSchema>
 
-const EditCategoryForm = () => {
+const AddEditCategoryForm = () => {
   const form = ({} = useForm<EditCategoryFormProps>({
     resolver: zodResolver(EditCategoryFormSchema),
     mode: 'onChange',
@@ -43,4 +43,4 @@ const EditCategoryForm = () => {
   )
 }
 
-export default EditCategoryForm
+export default AddEditCategoryForm

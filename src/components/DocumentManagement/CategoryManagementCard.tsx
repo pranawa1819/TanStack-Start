@@ -1,7 +1,7 @@
 import { LuFile, LuTrash2 } from 'react-icons/lu'
 import type { CategoryManagement } from './Types/CategoryManagement.type'
 import { LucideEdit } from 'lucide-react'
-import EditCategoryForm from './EditCategoryForm'
+import AddEditCategoryForm from './AddEditCategoryForm'
 
 type ModalSize = 'sm' | 'md' | 'lg'
 
@@ -43,7 +43,7 @@ const CategoryManagementCard = ({
                       size: 'lg',
                       cancelText: 'Cancel',
                       formId: 'department',
-                      component: <EditCategoryForm />,
+                      component: <AddEditCategoryForm />,
                     })
                   }}
                 />

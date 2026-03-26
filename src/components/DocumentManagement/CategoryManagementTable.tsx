@@ -11,7 +11,7 @@ import { FaEdit } from 'react-icons/fa'
 import { LuTrash2 } from 'react-icons/lu'
 import { HRTable } from '../Table/Table'
 import { LucideEdit } from 'lucide-react'
-import EditCategoryForm from './EditCategoryForm'
+import AddEditCategoryForm from './AddEditCategoryForm'
 
 type ModalSize = 'sm' | 'md' | 'lg'
 
@@ -95,7 +95,7 @@ const CategoryManagementTable = ({
                   size: 'lg',
                   cancelText: 'Cancel',
                   formId: 'department',
-                  component: <EditCategoryForm />,
+                  component: <AddEditCategoryForm />,
                 })
               }}
             />
