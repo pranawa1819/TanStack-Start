@@ -17,7 +17,6 @@ interface DatePickerProps {
   defaultMonth?: Date
   numberOfMonths?: number
   placeholder?: string
-  className: string
 }
 
 export function DatePicker({
@@ -26,7 +25,6 @@ export function DatePicker({
   value,
   onChange,
   defaultMonth,
-  className,
   numberOfMonths = 2,
   placeholder = 'Pick a date',
 }: DatePickerProps) {
@@ -47,7 +45,7 @@ export function DatePicker({
         <PopoverTrigger asChild className={className}>
           <Button
             variant="outline"
-            className={`px-2.5 font-normal border border-[#E4E4E7] bg-[#FFF] rounded-[6px] ${className}`}
+            className={`px-2.5 font-normal border border-[#E4E4E7] bg-[#FFF] rounded-[6px] `}
           >
             <LuCalendarDays className="h-4 w-4 text-[#71717A]" />
             {selectedDate?.from ? (
