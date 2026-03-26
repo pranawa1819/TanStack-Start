@@ -8,6 +8,8 @@ import { Grid } from '~/components/Icon/Grid'
 import { AddBranchForm } from '~/components/CompanySetup/AddBranchForm'
 import { Button } from '~/ui/button'
 import { BranchTableTest } from './Branch/branch-table'
+import { TabsFlex } from '../Tab/TabFlex'
+import { Tabs, TabsContent } from '~/ui/tabs'
 
 type ModalSize = 'sm' | 'md' | 'lg'
 
@@ -50,72 +52,60 @@ export const BranchManagement = ({ onOpen }: GetColumnsProps) => {
   // ]
   return (
     <>
-      <div className="flex justify-between px-12 py-6 ">
-        <div className="text-[20px] font-semibold leading-12 text-[#09090B] ">
-          Branch Management
-        </div>
-        <div className="flex gap-2 items-center">
-          <div className="relative w-58">
-            <HRInput
-              type="text"
-              value={searchData}
-              onChange={(e) => {
-                setSearchData(e.target.value)
-              }}
-              placeholder="Search.."
-              className="border rounded-[6px] px-11 pr-4 py-2.5 border-[#E4E4E7] bg-white leading-5"
-            />
-            <Search
-              className="rounded-3xl absolute left-5 top-2.5"
-              size={16}
-              color="gray"
-            />
+      <Tabs defaultValue="card">
+        <div className="flex justify-between px-12 py-6 ">
+          <div className="text-[20px] font-semibold leading-12 text-[#09090B] ">
+            Branch Management
           </div>
+          <div className="flex gap-2 items-center">
+            <div className="relative w-58">
+              <HRInput
+                type="text"
+                value={searchData}
+                onChange={(e) => {
+                  setSearchData(e.target.value)
+                }}
+                placeholder="Search.."
+                className="border rounded-[6px] px-11 pr-4 py-2.5 border-[#E4E4E7] bg-white leading-5"
+              />
+              <Search
+                className="rounded-3xl absolute left-5 top-2.5"
+                size={16}
+                color="gray"
+              />
+            </div>
 
-          <div className="flex items-center ">
-            <button
-              onClick={() => setBranch('table')}
-              className={`p-2 border border-[#4F39F6] cursor-pointer rounded-l-xl ${
-                branch === 'table' ? 'bg-[#4F39F6]' : ' bg-white'
-              }`}
-            >
-              <List fill={`${branch === 'table' ? 'white' : 'black'}`} />
-            </button>
+            <TabsFlex />
 
-            <button
-              onClick={() => setBranch('card')}
-              className={`p-2 border border-[#4F39F6] cursor-pointer rounded-r-xl  ${
-                branch === 'card' ? 'bg-[#4F39F6]' : ' bg-white'
-              }`}
-            >
-              <Grid fill={`${branch === 'card' ? 'white' : 'black'}`} />
-            </button>
-          </div>
-
-          <div className="flex justify-end">
-            <Button
-              type="button"
-              variant="secondary"
-              className="cursor-pointer text-[14px] font-medium leading-5 text-white"
-              onClick={() => {
-                onOpen({
-                  modalTitle: 'Branch  Details',
-                  title: 'Branch  Details',
-                  okText: 'Add',
-                  size: 'lg',
-                  cancelText: 'Cancel',
-                  formId: 'branch',
-                  component: <AddBranchForm />,
-                })
-              }}
-            >
-              Add Branch
-            </Button>
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                variant="secondary"
+                className="cursor-pointer text-[14px] font-medium leading-5 text-white"
+                onClick={() => {
+                  onOpen({
+                    modalTitle: 'Branch  Details',
+                    title: 'Branch  Details',
+                    okText: 'Add',
+                    size: 'lg',
+                    cancelText: 'Cancel',
+                    formId: 'branch',
+                    component: <AddBranchForm />,
+                  })
+                }}
+              >
+                Add Branch
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-
-      {branch === 'card' ? <BranchCard /> : <BranchTableTest />}
+        <TabsContent value="card">
+          <BranchCard />
+        </TabsContent>
+        <TabsContent value="table">
+          <BranchTableTest />
+        </TabsContent>
+      </Tabs>
     </>
   )
 }
