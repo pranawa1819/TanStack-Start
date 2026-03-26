@@ -7,8 +7,17 @@ import { TabsFlex } from '~/components/Tab/TabFlex'
 import { Button } from '~/ui/button'
 import PageHeader from '~/ui/header'
 import { Tabs, TabsContent } from '~/ui/tabs'
+import type { BreadcrumbSearch } from '../companysetup'
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 
 export const Route = createFileRoute('/documentManagement/categoryManagement')({
+  validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
+    group: search.group,
+    label: search.label,
+    url: search.url,
+    icon: search.icon,
+    groupIcon: search.groupIcon,
+  }),
   component: RouteComponent,
 })
 
@@ -47,10 +56,18 @@ const CardTableData = [
 
 function RouteComponent() {
   const { onOpen } = useDialogFormStore()
+  const search = Route.useSearch()
 
   return (
     <Tabs defaultValue="card">
       <div>
+        <BreadCrumb
+          className="px-12 pt-6.5"
+          crumbListClassName="gap-2"
+          crumbItemClassName="text-[14px] font-normal leading-5 gap-2 text-[#71717A]"
+          title={search.label ?? ''}
+          group={search.group ?? ''}
+        />
         <PageHeader title="Category Management">
           <div className="flex gap-4">
             <TabsFlex />

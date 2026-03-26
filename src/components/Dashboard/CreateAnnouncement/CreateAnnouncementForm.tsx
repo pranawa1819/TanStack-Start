@@ -127,7 +127,8 @@ export const CreateAnnouncementForm = () => {
             render={({ field }) => (
               <FileUpload
                 className="border border-dashed rounded-[2px] py-6 text-center cursor-pointer flex flex-col justify-center items-center gap-2"
-                icon={<UploadIcon />}
+                cardClassName='flex flex-col gap-2 items-center'
+                icon={UploadIcon}
                 label="Drag and drop to upload a file"
                 subLable="Supported formats: PDF, DOC, DOCX, JPG, PNG (Max 10MB)"
                 buttonClassName="w-30 px-4 py-2 bg-[#4F39F6] rounded-xl text-[14px] font-medium text-white"

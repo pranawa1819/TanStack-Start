@@ -9,8 +9,17 @@ import { Button } from '~/ui/button'
 import PageHeader from '~/ui/header'
 import { Label } from '~/ui/label'
 import { Switch } from '~/ui/switch'
+import type { BreadcrumbSearch } from '../companysetup'
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 
 export const Route = createFileRoute('/documentManagement/documentUpload')({
+  validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
+    group: search.group,
+    label: search.label,
+    url: search.url,
+    icon: search.icon,
+    groupIcon: search.groupIcon,
+  }),
   component: RouteComponent,
 })
 
@@ -52,8 +61,17 @@ function RouteComponent() {
   const onSubmit = (data: UploadDocumentFormProps) => {
     console.log('form data:', data)
   }
+  const search = Route.useSearch()
+
   return (
     <div>
+      <BreadCrumb
+        className="px-12 pt-6.5"
+        crumbListClassName="gap-2"
+        crumbItemClassName="text-[14px] font-normal leading-5 gap-2 text-[#71717A]"
+        title={search.label ?? ''}
+        group={search.group ?? ''}
+      />
       <PageHeader title="Document Upload" />
       <form
         action="submit"

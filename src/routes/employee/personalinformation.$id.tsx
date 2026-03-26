@@ -48,18 +48,18 @@ function RouteComponent() {
               
                 <span className="text-lg font-semibold">{employee.name}</span>
                
-               <div className='flex flex-col'>
-                <div className='grid grid-cols-2 gap-3'>
-                  <span>Role</span>
-                  <span>{employee.designation}</span>
+               <div className='flex flex-col gap-2'>
+                <div className='flex gap-3'>
+                  <span className='w-15 text-[12px] font-normal leading-4 text-[#71717A]'>Role</span>
+                  <span className='text-[12px] font-medium leading-4 text-[#09090B]'>{employee.designation}</span>
                 </div>
-                 <div className='grid grid-cols-2 gap-3'>
-                  <span>Email</span>
-                  <span>{employee.email}</span>
+                 <div className='flex gap-3'>
+                  <span className='w-15 text-[12px] font-normal leading-4 text-[#71717A]'>Email</span>
+                  <span className=' text-[12px] font-medium leading-4 text-[#09090B]'>{employee.email}</span>
                 </div>
-                 <div className='grid grid-cols-2 gap-3'>
-                  <span>Contact</span>
-                  <span>{employee.phone}</span>
+                 <div className='flex gap-3'>
+                  <span className='w-15 text-[12px] font-normal leading-4 text-[#71717A]'>Contact</span>
+                  <span className='text-[12px] font-medium leading-4 text-[#09090B]'>{employee.phone}</span>
 
                 </div>
 

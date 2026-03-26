@@ -1,5 +1,6 @@
 import { Controller, useFormContext } from 'react-hook-form'
 import { FileUpload } from '~/components/Dashboard/CreateAnnouncement/FileUpload'
+import { HRDatePicker } from '~/components/DatePicker/Date'
 import { HRInput } from '~/components/Input/Input'
 import { HRLabel } from '~/components/Label/Label'
 
@@ -111,11 +112,10 @@ export const PersonalInformationForm = () => {
                 error={errors.phoneNumber?.message as string}
                 {...register('phoneNumber')}
               />
-              <HRInput
+              <HRDatePicker
                 Label="Date of Birth"
                 isRequired={true}
-                type="date"
-                inputClassName="px-3 py-[10px] rounded-[6px] border border-[#E4E4E7] bg-white"
+                className="px-3 py-5 rounded-[6px] border border-[#E4E4E7] bg-white"
                 error={errors.dateOfBirth?.message as string}
                 {...register('dateOfBirth')}
               />

@@ -17,6 +17,7 @@ interface DatePickerProps {
   defaultMonth?: Date
   numberOfMonths?: number
   placeholder?: string
+  className: string
 }
 
 export function DatePicker({
@@ -25,6 +26,7 @@ export function DatePicker({
   value,
   onChange,
   defaultMonth,
+  className,
   numberOfMonths = 2,
   placeholder = 'Pick a date',
 }: DatePickerProps) {
@@ -42,7 +44,7 @@ export function DatePicker({
   return (
     <Field className="w-60">
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild className={className}>
           <Button
             variant="outline"
             className={`px-2.5 font-normal border border-[#E4E4E7] bg-[#FFF] rounded-[6px] ${className}`}

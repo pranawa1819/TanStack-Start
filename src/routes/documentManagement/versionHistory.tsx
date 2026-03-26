@@ -5,8 +5,17 @@ import DocumentAccordion from '~/components/DocumentManagement/DocumentDropDown'
 import type { VersionHistory } from '~/components/DocumentManagement/Types/VersionHistory.type'
 import { DropDown } from '~/components/DropDown/DropDown'
 import PageHeader from '~/ui/header'
+import type { BreadcrumbSearch } from '../companysetup'
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 
 export const Route = createFileRoute('/documentManagement/versionHistory')({
+  validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
+    group: search.group,
+    label: search.label,
+    url: search.url,
+    icon: search.icon,
+    groupIcon: search.groupIcon,
+  }),
   component: RouteComponent,
 })
 
@@ -65,8 +74,17 @@ const versionData: VersionHistory[] = [
   },
 ]
 function RouteComponent() {
+  const search = Route.useSearch()
+
   return (
     <div>
+      <BreadCrumb
+        className="px-12 pt-6.5"
+        crumbListClassName="gap-2"
+        crumbItemClassName="text-[14px] font-normal leading-5 gap-2 text-[#71717A]"
+        title={search.label ?? ''}
+        group={search.group ?? ''}
+      />
       <PageHeader title="Version History">
         <div className="flex gap-4">
           <DropDown

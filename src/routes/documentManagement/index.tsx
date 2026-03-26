@@ -6,8 +6,16 @@ import MissingDocumentsTable from '~/components/DocumentManagement/MissingDocume
 import { DropDown } from '~/components/DropDown/DropDown'
 import PageHeader from '~/ui/header'
 import SearchBar from '~/ui/search'
+import type { BreadcrumbSearch } from '../companysetup'
 
 export const Route = createFileRoute('/documentManagement/')({
+  validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
+    group: search.group,
+    label: search.label,
+    url: search.url,
+    icon: search.icon,
+    groupIcon: search.groupIcon,
+  }),
   component: RouteComponent,
   loader: () => {
     return {
@@ -61,8 +69,17 @@ const options = [
 
 function RouteComponent() {
   const { onOpen } = useDialogFormStore()
+  const search = Route.useSearch()
+
   return (
     <div>
+      <BreadCrumb
+        className="px-12 pt-6.5"
+        crumbListClassName="gap-2"
+        crumbItemClassName="text-[14px] font-normal leading-5 gap-2 text-[#71717A]"
+        title={search.label ?? ''}
+        group={search.group ?? ''}
+      />
       <PageHeader title="Missing Documents">
         <SearchBar placeholder="Search by name or EID" className="w-65 h-10" />
         <div className="ml-4 flex gap-4">

@@ -4,9 +4,17 @@ import { DatePicker } from '~/components/DatePicker/DatePicker'
 import DocumentVisibilityTable from '~/components/DocumentManagement/DocumentVisibilityTable'
 import { DropDown } from '~/components/DropDown/DropDown'
 import PageHeader from '~/ui/header'
-import { Table } from '~/ui/table'
+import type { BreadcrumbSearch } from '../companysetup'
+import { BreadCrumb } from '~/components/BreadCrumb/BreadCrumb'
 
 export const Route = createFileRoute('/documentManagement/visibility')({
+  validateSearch: (search: Record<string, any>): BreadcrumbSearch => ({
+    group: search.group,
+    label: search.label,
+    url: search.url,
+    icon: search.icon,
+    groupIcon: search.groupIcon,
+  }),
   component: RouteComponent,
 })
 
@@ -57,6 +65,8 @@ const tableData = [
 ]
 
 function RouteComponent() {
+  const search = Route.useSearch()
+
   const today = new Date()
 
   const format = (date: Date) =>
@@ -69,6 +79,13 @@ function RouteComponent() {
   const placeholderDate = `${format(today)} - ${format(today)}`
   return (
     <div>
+      <BreadCrumb
+        className="px-12 pt-6.5"
+        crumbListClassName="gap-2"
+        crumbItemClassName="text-[14px] font-normal leading-5 gap-2 text-[#71717A]"
+        title={search.label ?? ''}
+        group={search.group ?? ''}
+      />
       <PageHeader title="Document Visibility">
         <div className="flex gap-4">
           <DropDown
