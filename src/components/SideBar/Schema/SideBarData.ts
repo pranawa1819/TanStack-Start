@@ -1,9 +1,8 @@
-import { FaUsers } from 'react-icons/fa'
 import { FiFile } from 'react-icons/fi'
 import type { IconType } from 'react-icons/lib'
 import {
+  LuBriefcaseBusiness,
   LuBuilding2,
-  LuChartNetwork,
   LuChartPie,
   LuFileCheck2,
   LuFiles,
@@ -12,8 +11,10 @@ import {
   LuFileUp,
   LuMapPinPlusInside,
   LuNetwork,
-  LuUser,
+  LuSquareUser,
+  LuTentTree,
   LuUsers,
+  LuUserSearch,
 } from 'react-icons/lu'
 
 export type MenuItem = {
@@ -108,4 +109,47 @@ export const items: SidebarGroupType[] = [
       },
     ],
   },
+  {
+    group: 'Attendance',
+    icon: LuUserSearch,
+    menu: [
+      {
+        label: 'Attendance Record',
+        icon: LuUserSearch,
+        url: '/attendance/',
+      },
+       {
+        label: 'Work Record',
+        icon: LuBriefcaseBusiness ,
+        url: '/attendance/work-record',
+      },
+      {
+        label: 'My Attendance',
+        icon: LuSquareUser ,
+        url: '/attendance/my-attendance',
+      },
+    ],
+  },
+    {
+    group: 'Leave',
+    icon: LuTentTree,
+    menu: [
+      {
+        label: 'Leave Requests',
+        icon: LuSquareUser,
+        url: '/leave/',
+      },
+       {
+        label: 'My Requests',
+        icon: LuSquareUser ,
+        url: '/leave/my-request',
+      },
+      {
+        label: 'Leave Balance',
+        icon: LuSquareUser ,
+        url: '/leave/leave-balance',
+      },
+    ],
+  },
+
 ]
