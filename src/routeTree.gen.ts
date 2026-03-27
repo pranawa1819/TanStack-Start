@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LeaveIndexRouteImport } from './routes/leave/index'
 import { Route as EmployeeIndexRouteImport } from './routes/employee/index'
 import { Route as DocumentManagementIndexRouteImport } from './routes/documentManagement/index'
+import { Route as DirectoriesIndexRouteImport } from './routes/directories/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as CompanysetupIndexRouteImport } from './routes/companysetup/index'
 import { Route as AttendanceIndexRouteImport } from './routes/attendance/index'
@@ -48,6 +49,11 @@ const EmployeeIndexRoute = EmployeeIndexRouteImport.update({
 const DocumentManagementIndexRoute = DocumentManagementIndexRouteImport.update({
   id: '/documentManagement/',
   path: '/documentManagement/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectoriesIndexRoute = DirectoriesIndexRouteImport.update({
+  id: '/directories/',
+  path: '/directories/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/attendance/': typeof AttendanceIndexRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/directories/': typeof DirectoriesIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
   '/leave/': typeof LeaveIndexRoute
@@ -177,6 +184,7 @@ export interface FileRoutesByTo {
   '/attendance': typeof AttendanceIndexRoute
   '/companysetup': typeof CompanysetupIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/directories': typeof DirectoriesIndexRoute
   '/documentManagement': typeof DocumentManagementIndexRoute
   '/employee': typeof EmployeeIndexRoute
   '/leave': typeof LeaveIndexRoute
@@ -200,6 +208,7 @@ export interface FileRoutesById {
   '/attendance/': typeof AttendanceIndexRoute
   '/companysetup/': typeof CompanysetupIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/directories/': typeof DirectoriesIndexRoute
   '/documentManagement/': typeof DocumentManagementIndexRoute
   '/employee/': typeof EmployeeIndexRoute
   '/leave/': typeof LeaveIndexRoute
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/attendance/'
     | '/companysetup/'
     | '/dashboard/'
+    | '/directories/'
     | '/documentManagement/'
     | '/employee/'
     | '/leave/'
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/attendance'
     | '/companysetup'
     | '/dashboard'
+    | '/directories'
     | '/documentManagement'
     | '/employee'
     | '/leave'
@@ -268,6 +279,7 @@ export interface FileRouteTypes {
     | '/attendance/'
     | '/companysetup/'
     | '/dashboard/'
+    | '/directories/'
     | '/documentManagement/'
     | '/employee/'
     | '/leave/'
@@ -291,6 +303,7 @@ export interface RootRouteChildren {
   AttendanceIndexRoute: typeof AttendanceIndexRoute
   CompanysetupIndexRoute: typeof CompanysetupIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DirectoriesIndexRoute: typeof DirectoriesIndexRoute
   DocumentManagementIndexRoute: typeof DocumentManagementIndexRoute
   EmployeeIndexRoute: typeof EmployeeIndexRoute
   LeaveIndexRoute: typeof LeaveIndexRoute
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       path: '/documentManagement'
       fullPath: '/documentManagement/'
       preLoaderRoute: typeof DocumentManagementIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/directories/': {
+      id: '/directories/'
+      path: '/directories'
+      fullPath: '/directories/'
+      preLoaderRoute: typeof DirectoriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -461,6 +481,7 @@ const rootRouteChildren: RootRouteChildren = {
   AttendanceIndexRoute: AttendanceIndexRoute,
   CompanysetupIndexRoute: CompanysetupIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DirectoriesIndexRoute: DirectoriesIndexRoute,
   DocumentManagementIndexRoute: DocumentManagementIndexRoute,
   EmployeeIndexRoute: EmployeeIndexRoute,
   LeaveIndexRoute: LeaveIndexRoute,

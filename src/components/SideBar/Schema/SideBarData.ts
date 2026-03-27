@@ -1,6 +1,7 @@
 import { FiFile } from 'react-icons/fi'
 import type { IconType } from 'react-icons/lib'
 import {
+  LuBookUser,
   LuBriefcaseBusiness,
   LuBuilding2,
   LuChartPie,
@@ -118,19 +119,19 @@ export const items: SidebarGroupType[] = [
         icon: LuUserSearch,
         url: '/attendance/',
       },
-       {
+      {
         label: 'Work Record',
-        icon: LuBriefcaseBusiness ,
+        icon: LuBriefcaseBusiness,
         url: '/attendance/work-record',
       },
       {
         label: 'My Attendance',
-        icon: LuSquareUser ,
+        icon: LuSquareUser,
         url: '/attendance/my-attendance',
       },
     ],
   },
-    {
+  {
     group: 'Leave',
     icon: LuTentTree,
     menu: [
@@ -139,17 +140,27 @@ export const items: SidebarGroupType[] = [
         icon: LuSquareUser,
         url: '/leave/',
       },
-       {
+      {
         label: 'My Requests',
-        icon: LuSquareUser ,
+        icon: LuSquareUser,
         url: '/leave/my-request',
       },
       {
         label: 'Leave Balance',
-        icon: LuSquareUser ,
+        icon: LuSquareUser,
         url: '/leave/leave-balance',
       },
     ],
   },
-
+  {
+    group: 'Directories',
+    icon: LuBookUser,
+    menu: [
+      {
+        label: 'Employee Directories',
+        icon: LuBookUser,
+        url: '/directories/',
+      },
+    ],
+  },
 ]
